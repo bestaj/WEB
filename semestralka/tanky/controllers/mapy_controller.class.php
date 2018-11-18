@@ -3,12 +3,11 @@
 class MapyController {
     
     private $db;
-    /*
+    
     public function __construct() {
-        require_once("models/mod-databaze.class.php");
-        $this->db = new ModDatabaze();
+        require_once("models/model_db.class.php");
+        $this->db = new Databaze();
     }
-    */
     
     /**
      *  Vrati obsah stranky
@@ -20,6 +19,14 @@ class MapyController {
         // Naplneni globalnich promennych
         $tplData['title'] = "Mapy";
         //    $tplData['data'] = $this->db->getAllIntroductions();
+        
+        if($this->db->isUserLoged()) {
+            $tplData['prihlasen'] = true;
+        }
+        else {
+            $tplData['prihlasen'] = false;
+        }
+        
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();

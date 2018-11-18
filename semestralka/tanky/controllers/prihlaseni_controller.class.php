@@ -1,6 +1,6 @@
 <?php
 
-class TipyController {
+class PrihlaseniController {
     
     private $db;
     
@@ -17,21 +17,14 @@ class TipyController {
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         // Naplneni globalnich promennych
-        $tplData['title'] = "Rady a tipy";
-        //    $tplData['data'] = $this->db->getAllIntroductions();
-        
-        if($this->db->isUserLoged()) {
-            $tplData['prihlasen'] = true;
-        }
-        else {
-            $tplData['prihlasen'] = false;
-        }
+        $tplData['title'] = "Přihlášení";
+        // $tplData['data'] = $this->db->getAllIntroductions();
         
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
-        require "views/tipy.php";
+        require "views/prihlaseni.php";
         // ziskam obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 

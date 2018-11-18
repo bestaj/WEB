@@ -3,12 +3,12 @@
 class DomuController {
     
     private $db;
-    /*
+    
     public function __construct() {
-        require_once("models/mod-databaze.class.php");
-        $this->db = new ModDatabaze();
+        require_once("models/model_db.class.php");
+        $this->db = new Databaze();
     }
-    */
+    
     
     /**
      *  Vrati obsah stranky
@@ -19,7 +19,16 @@ class DomuController {
         global $tplData;
         // Naplneni globalnich promennych
         $tplData['title'] = "Domů";
-    //    $tplData['data'] = $this->db->getAllIntroductions();
+        
+        //$tplData['data'] = $this->db->getAllIntroductions();
+       
+        if($this->db->isUserLoged()) {
+            $tplData['prihlasen'] = true;
+        }
+        else {
+            $tplData['prihlasen'] = false;
+        }
+       
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
