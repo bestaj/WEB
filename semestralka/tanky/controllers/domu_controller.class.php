@@ -3,6 +3,8 @@
 class DomuController {
     
     private $db;
+    // Nastaveni globalnich promennych pro sablonu
+    
     
     public function __construct() {
         require_once("models/model_db.class.php");
@@ -15,20 +17,17 @@ class DomuController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        // Nastaveni globalnich promennych pro sablonu
+        $_SESSION["logoutPage"] = "domu";
+        require "controllers/logout.php";
+    
         global $tplData;
+        
+    
         // Naplneni globalnich promennych
         $tplData['title'] = "Domů";
         
         //$tplData['data'] = $this->db->getAllIntroductions();
-       
-        if($this->db->isUserLoged()) {
-            $tplData['prihlasen'] = true;
-        }
-        else {
-            $tplData['prihlasen'] = false;
-        }
-       
+        
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();

@@ -14,8 +14,12 @@ class ProfilController {
      *  @return string Obsah stranky
      */
     public function getResult() {
+        $_SESSION["logoutPage"] = "domu";
+        require "controllers/logout.php";
+        
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
+        
         // Naplneni globalnich promennych
         $tplData['title'] = "Profil uživatele";
         // $tplData['data'] = $this->db->getAllIntroductions();

@@ -4,11 +4,6 @@
  * Trida vypisujici HTML hlavicky stranky
  */
 class Zaklad {
-    private $prihlasen;
-    
-    public function __construct($prihlasen) {
-        $this->prihlasen = $prihlasen;
-    }
     
     /**
      *  Vrati vrsek stranky az po oblast, 
@@ -62,12 +57,21 @@ class Zaklad {
     <?php
     }
     
+    /**
+     * Pro prihlaseneho uzivatele vypise do praveho horniho rohu jeho jmeno
+     * a moznost odhlaseni.
+     * Pro neprihlaseneho uzivatele je misto toho vypsan odkaz pro prihlaseni
+     */
     public function getLoginBox() {
-        if($this->prihlasen) {
-            echo "<a id="."login"." href="."index.php?page=profil".">Jmeno</a>";
+        if(isset($_SESSION["user"])) {
+            $res = "<form id=\"logout\" action=\"index.php?page=$_SESSION[logoutPage]\" method=\"post\">
+                        <input type=\"submit\" name=\"logout\" value=\"Odhlásit\">
+                    </form>
+                    <a id=\"login\" href=\"index.php?page=profil\">".$_SESSION['user']['login']."</a>";
+            echo $res;
         }
         else {
-            echo "<a id="."login"." href="."index.php?page=prihlaseni".">Přihlásit</a>";
+            echo "<a id=\"login\" href=\"index.php?page=prihlaseni\">Přihlásit</a>";
         }
     }
 }

@@ -3,7 +3,7 @@
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad.php");
 
-$hlavicky = new Zaklad($tplData['prihlasen']);
+$hlavicky = new Zaklad();
 
 global $tplData;
 

@@ -14,18 +14,15 @@ class MapyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
+        $_SESSION["logoutPage"] = "mapy";
+        require "controllers/logout.php";
+        
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
+        
         // Naplneni globalnich promennych
         $tplData['title'] = "Mapy";
         //    $tplData['data'] = $this->db->getAllIntroductions();
-        
-        if($this->db->isUserLoged()) {
-            $tplData['prihlasen'] = true;
-        }
-        else {
-            $tplData['prihlasen'] = false;
-        }
         
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony

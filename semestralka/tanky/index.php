@@ -11,9 +11,11 @@ include("settings.inc.php");
 //test, na existenci pozadovane stranky, jinak defaultni
 if (isset($_GET["page"]) && array_key_exists($_GET["page"], WEB_PAGES)) {
     $page = $_GET["page"]; // Nastavim vybranou stranku
+//    $_SESSION["page"] = $_GET["page"];
 }
 else {
     $page = DEFAULT_WEB_PAGE; // Nastavim defaultni stranku
+//    $_SESSION["page"] = DEFAULT_WEB_PAGE;
 }
 
 // Nacteni odpovidajiciho kontroleru

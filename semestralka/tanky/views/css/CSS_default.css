@@ -46,10 +46,11 @@ header {
     text-decoration: none;
     padding: 0 5px;
 }
-
-#login:hover {
-    border-color: rgb(255,255,50);
-    border-style: groove;
+#logout {
+    float: right;font-size: 15px;
+    color: grey;
+    text-decoration: none;
+    padding: 0 5px;
 }
 
 .title {

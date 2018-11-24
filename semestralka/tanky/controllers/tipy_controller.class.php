@@ -3,7 +3,7 @@
 class TipyController {
     
     private $db;
-    
+       
     public function __construct() {
         require_once("models/model_db.class.php");
         $this->db = new Databaze();
@@ -14,18 +14,15 @@ class TipyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
+        $_SESSION["logoutPage"] = "tipy"; 
+        require "controllers/logout.php";
+        
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
+       
         // Naplneni globalnich promennych
         $tplData['title'] = "Rady a tipy";
         //    $tplData['data'] = $this->db->getAllIntroductions();
-        
-        if($this->db->isUserLoged()) {
-            $tplData['prihlasen'] = true;
-        }
-        else {
-            $tplData['prihlasen'] = false;
-        }
         
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony

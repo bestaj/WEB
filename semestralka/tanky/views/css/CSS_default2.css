@@ -1,4 +1,6 @@
 body {
+    margin: 0;
+    padding: 0;
     background-image: url("../images/logo.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -9,16 +11,73 @@ body {
 }
 
 #title {
-    color: white;
+    color: rgb(255,150,0);
     font-size: 30px;
+    font-weight: bold;
     text-align: center;
     padding: 20;
 }
 
-.formPanel {
-    background-color: rgba(0,0,0,0.7);
-    border: 10px solid white;
-    border-style: dotted;
-    margin: 0 25% 5% 25%;
-    height: 80%;
+.loginPage {
+    background-color: rgba(0,0,0,0.8);
+    border: 5px solid white;
+    border-radius: 5px;
+    margin: auto;
+    padding: 1% 0 0;
+    width: 360px;
+}
+
+.form {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.form label {
+    color: white;
+    font-size: 18px;
+    cursor: default;
+}
+
+.form span {
+    color: red;
+}
+
+.form input {
+    background-color: rgba(0,0,0,0.2);
+    margin: 0 0 15px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+}
+
+.form p {
+    color: white;
+    font-size: 12px;
+}
+
+#submitBtn {
+    font-size: 18px;
+    border: 0;
+    margin-top: 10px;
+    background-color: rgba(255,150,0,0.8);
+    
+}
+
+#submitBtn:hover {
+    background-color: rgba(255,220,0, 0.8);
+}
+
+.zprava {
+    font-size: 13px;
+    color: white;
+}
+
+.zprava a {
+    font-size: 15px;
+    color: deepskyblue;
 }
