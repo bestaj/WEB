@@ -115,18 +115,29 @@ class Databaze {
      *  @return array           Pole s informacemi o konkretnim uzivateli nebo null.
      */
     public function allUserInfo($login){
-        $sql = "SELECT * FROM uzivatel, pravo
-                WHERE uzivatel.login = :login
-                  AND pravo.idpravo = uzivatel.idpravo;";
+        
+        $sql = "SELECT u.login, u.heslo, u.email, u.jmeno_ve_hre, p.nazev 
+                FROM uzivatel u, pravo p
+                WHERE u.login = :login AND p.idpravo = u.idpravo;";
     
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
     
         $res = $this->executeQuery($query);
+        
         $res = $query->fetchAll();
-
-        if($res != null && count($res)>0){
-            // vracim pouze prvni radek, ve kterem je uzivatel
+        /*
+        if($res == null) {
+            echo "neexistuje";
+        }
+        else {
+            foreach($res[0] as $p) {
+               echo $p;
+            }
+        }
+        */
+        if($res != null && count($res) > 0){
+            //// change
             return $res[0];
         } else {
             return null;

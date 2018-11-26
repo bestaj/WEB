@@ -18,13 +18,29 @@ body {
     padding: 20;
 }
 
-.loginPage {
+.contentBox {
     background-color: rgba(0,0,0,0.8);
     border: 5px solid white;
     border-radius: 5px;
     margin: auto;
     padding: 1% 0 0;
+    min-width: 300px;
     width: 360px;
+}
+
+.profilBox {
+    background-color: rgba(0,0,0,0.9);
+    margin: auto;
+    padding: 1% 0 0;
+    width: 50%;
+}
+
+.userInfo {
+    color: white;
+    border: 2px solid yellow;
+    padding: 2%;
+    margin: 0 auto;
+    width: 50%;
 }
 
 .form {

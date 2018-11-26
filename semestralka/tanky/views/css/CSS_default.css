@@ -1,7 +1,6 @@
 body {
-    background-image: rgba(150,150,150,0.5), url(../images/Background.jpg);
-    background-size: cover;
     margin: 0;
+    padding: 0;
 }
 
 header {
@@ -12,22 +11,49 @@ header {
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
-    
 }
+
+.content {
+    background-image: url(../images/sq.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    float: left;
+}
+
 .myContainer {
-    background-color: rgba(0,0,0,0.5);
-    margin: 0 300 50 300; 
-    
+    background-color: rgba(0,0,0,0.8);
+    margin: 0 200 50 200;
+    float: right;
+    border-color: white;
+    border-style: dashed; 
+}
+
+.article {
+    color: white;
+    margin: 70;
+    font-size: 20px;
+}
+
+.article h1 {
+    text-align: center;
+    font-family: serif;
+    padding: 30px;
+}
+
+.article h2 {
+    color: yellow;
+    text-align: center;
 }
 
 .loginPanel {
+    float: right;
     color: #d9d9d9;
-    padding: 10;
-/*    position: fixed;
-    top: 0;
-    overflow: hidden;
-*/    
-    background-color: rgba(0,0,0,0.3);
+    padding: 10px 30px 8px 10px; 
+    background-color: rgba(0,0,0,0.4);
     width: 100%;
 }
 
@@ -39,25 +65,56 @@ header {
     color: rgb(255,255,50);
 }
 
+.userBtn {
+    background-color: black;
+    border: 1px solid yellow;
+    padding: 5px 15px 5px 15px;
+    color: white;
+}
+
+.userBtn:hover {
+    box-shadow: 2 2 yellow;
+}
+
+.dropdown {
+    float: right;
+    padding: 0px;
+    font-size: 16px;
+}
+
+.dropdown-menu {
+    font-family: sans-serif;
+    background-color: grey;
+}
+
+.dropdown-toggle {
+    margin-right: 30px;
+}
+
 #login {
     float: right;
     font-size: 15px;
     color: white;
     text-decoration: none;
-    padding: 0 5px;
+    padding: 2px;
 }
-#logout {
-    float: right;font-size: 15px;
-    color: grey;
+
+#log {
+    background-color: grey;
+    font-size: 15px;
+    color: black;
     text-decoration: none;
-    padding: 0 5px;
+    
+}
+
+#log:hover {  
+    color: yellow;
 }
 
 .title {
     color: rgb(200, 200, 200);
     text-shadow: 0 0 30px black;
     font-size: 4vw;
-    margin-top: 20;
     font-family: serif;
     cursor: default;
     font-weight: BOLD;
@@ -76,6 +133,10 @@ header {
     font-family: serif;
 }
 
+.myNav ul {
+    margin: 0; 
+}
+
 .myNav li {
     display: inline-block;
     padding: 0 0 20 0;
@@ -88,51 +149,12 @@ header {
     padding: 10px 50px;
     font-size: 20px;
 }
-
+/*
 .myNav li.active a {
     border-bottom: 1px solid white;
 }
-
+*/
 .myNav li a:hover {
     border: 1px solid white;
     background-color: rgba(0, 0, 0, 0.5);
 }
-
-/*
-#login {
-    color: grey;
-    font-size: 18px;
-    float: right;
-    margin: 2px 10px;
-}
-
-
-.myrow a {
-    color: black;
-    font-size: 18px;
-    float: right;
-    padding: 10px;
-    background-color: grey;
-    border: 2px solid black;
-    border-radius: 20px;
-
-}
-
-
-
-.container {
-    background-color: rgba(0, 0, 0, 0.7); 
-    color: white;
-    border: 3px solid black;
-}
-
-.bottompane a {
-    color: grey;
-    font-size: 15px;
-    
-}
-
-.bottompane a:hover {
-    color: white;
-}
-*/

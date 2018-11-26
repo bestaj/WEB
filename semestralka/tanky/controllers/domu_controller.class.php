@@ -25,7 +25,11 @@ class DomuController {
     
         // Naplneni globalnich promennych
         $tplData['title'] = "Domů";
-        
+        /*
+        foreach($pole as $r) {
+            echo $r;
+        }
+        */
         //$tplData['data'] = $this->db->getAllIntroductions();
         
         // vypsani prislusne sablony

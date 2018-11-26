@@ -9,7 +9,7 @@ global $tplData;
 
 $hlavicky->getHeader($tplData['title']);
 ?>
-    <div class="loginPage">
+    <div class="contentBox">
         <div class="form">
             <?php if ($tplData['loginAlreadyExist']) { ?>
                     <span>Tento login již existuje.</span>

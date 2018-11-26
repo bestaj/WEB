@@ -34,7 +34,7 @@ class Zaklad {
                 </div>
                 <p class="title">Buď lepší<br><span>ve</span><br>World of Tanks</p>                
             <div class="myNav"> 
-                <ul >
+                <ul>
                     <li><a href="index.php?page=domu">Domů</a></li>
                     <li><a href="index.php?page=tanky">Tanky</a></li> 
                     <li><a href="index.php?page=mapy">Mapy</a></li> 
@@ -42,6 +42,7 @@ class Zaklad {
                 </ul>
             </div>
             </header>
+            
     <?php
         }
 
@@ -50,7 +51,6 @@ class Zaklad {
      */
     public function getFooter() {
     ?>          
-            
         </body>
     </html>
 
@@ -63,15 +63,30 @@ class Zaklad {
      * Pro neprihlaseneho uzivatele je misto toho vypsan odkaz pro prihlaseni
      */
     public function getLoginBox() {
-        if(isset($_SESSION["user"])) {
-            $res = "<form id=\"logout\" action=\"index.php?page=$_SESSION[logoutPage]\" method=\"post\">
-                        <input type=\"submit\" name=\"logout\" value=\"Odhlásit\">
-                    </form>
-                    <a id=\"login\" href=\"index.php?page=profil\">".$_SESSION['user']['login']."</a>";
-            echo $res;
+        if(isset($_SESSION["user"])) { ?>
+        <!--
+            <form id="logout" action="index.php?page=<?php echo $_SESSION['logoutPage']?>" method="post">
+                 <input type="submit" name="logout" value="Odhlásit">
+            </form>
+                <a id="login" href="index.php?page=profil"><?php echo $_SESSION["user"]["login"]?></a>
+        -->
+            <div class="dropdown">
+                <button class="userBtn dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
+                    <?php echo $_SESSION["user"]["login"]?></button>
+                <ul class="dropdown-menu">
+                    <li><a id="log" href="index.php?page=profil">Profil</a></li>
+                    <li><form id="log" action="index.php?page=<?php echo $_SESSION['logoutPage']?>" method="post">
+                            <input type="submit" name="logout" value="Odhlásit">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            
+            <?php
         }
-        else {
-            echo "<a id=\"login\" href=\"index.php?page=prihlaseni\">Přihlásit</a>";
+        else { ?>
+            <a id="login" href="index.php?page=prihlaseni">Přihlásit</a>
+        <?php
         }
     }
 }

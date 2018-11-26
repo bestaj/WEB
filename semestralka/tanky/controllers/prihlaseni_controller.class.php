@@ -22,9 +22,6 @@ class PrihlaseniController {
         $this->confirmLogin();
         // Naplneni globalnich promennych
         $tplData['title'] = "Přihlášení";
-        // $tplData['data'] = $this->db->getAllIntroductions();
-        
-        
         
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
@@ -45,9 +42,11 @@ class PrihlaseniController {
         // prihlaseni uzivatele
         if(isset($_POST["login"])){
             $res = $this->db->userLogin($_POST["log-in"],$_POST["pass"]); 
+            // nepovedlo se prihlasit
             if(!$res){
                 $tplData['prihlaseniOK'] = false;
             }
+            // uspesne prihlaseni, automaticke presmerovani na domovskou stranku
             else {
                 $tplData['prihlaseniOK'] = true;
                 ?>

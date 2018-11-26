@@ -21,14 +21,13 @@ class ProfilController {
         global $tplData;
         
         // Naplneni globalnich promennych
-        $tplData['title'] = "Profil uživatele";
-        // $tplData['data'] = $this->db->getAllIntroductions();
+        $tplData["title"] = "Profil uživatele";
         
         if($this->db->isUserLoged()) {
-            $tplData['prihlasen'] = true;
+            $tplData["prihlasen"] = true;
         }
         else {
-            $tplData['prihlasen'] = false;
+            $tplData["prihlasen"] = false;
         }
         
         // vypsani prislusne sablony
