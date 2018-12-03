@@ -16,12 +16,13 @@ class ProfilController {
     public function getResult() {
         $_SESSION["logoutPage"] = "domu";
         require "controllers/logout.php";
+        $this->confirmUserChanges();
         
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         
         // Naplneni globalnich promennych
-        $tplData["title"] = "Profil uživatele";
+        $tplData["title"] = "Profil uživatele ".$_SESSION['user']['login'];
         
         if($this->db->isUserLoged()) {
             $tplData["prihlasen"] = true;
@@ -40,5 +41,15 @@ class ProfilController {
 
         // vratim sablonu naplnenou daty
         return $obsah;
+    }
+    
+    public function confirmUserChanges() {
+        if (isset($_POST["changePassword"])) {
+            $this->db->changePassword($_POST["newPass"]);
+        }
+        
+        if (isset($_POST["changeNick"])) {
+            $this->db->changeGameNick($_POST["gameNick"]);
+        }
     }
 }

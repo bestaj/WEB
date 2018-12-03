@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(30,30,30);
 }
 
 header {
@@ -13,38 +14,75 @@ header {
     background-position: center;
 }
 
-.content {
-    background-image: url(../images/sq.jpg);
+.content1 {
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/sq.jpg);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    float: left;
+    background-position: top;
+    background-attachment: fixed;
+    height: auto;
+}
+
+.content2 {
+    background-image: url(../images/tanky-background.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+.content3 {
+    
+}
+
+.tipBox {
+    color: white;
+    font-size: 1.1vw;
+    text-align: center;
+    padding: 2% 5% 0;
+}
+
+.tipBox button {
+    margin-bottom: 10px;
+    font-size: 1.2vw;
+    background-color: black;
+    border: 1px solid yellow;
+}
+
+.tipBox button:hover {
+    box-shadow: 1px 1px 0 2px orange;
 }
 
 .myContainer {
     background-color: rgba(0,0,0,0.8);
-    margin: 0 200 50 200;
-    float: right;
+    margin:0 15% 3%;
     border-color: white;
-    border-style: dashed; 
+    border-style: double;
+    height: auto;
 }
 
 .article {
     color: white;
-    margin: 70;
-    font-size: 20px;
+    margin: 10%;
+    font-size: 1.5vw;
 }
 
-.article h1 {
+h1 {
+    font-size: 3vw;
     text-align: center;
     font-family: serif;
-    padding: 30px;
+    padding: 20px;
 }
 
-.article h2 {
+h2 {
+    font-size: 2vw;
     color: yellow;
     text-align: center;
 }
@@ -55,10 +93,12 @@ header {
     padding: 10px 30px 8px 10px; 
     background-color: rgba(0,0,0,0.4);
     width: 100%;
+    font-size: 1.1vw;
 }
 
 .loginPanel a { 
     color: rgba(255,255,50,0.5);
+    font-size: 1vw;
 }
 
 .loginPanel a:hover {
@@ -66,24 +106,32 @@ header {
 }
 
 .userBtn {
+    float: right;
     background-color: black;
-    border: 1px solid yellow;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px 7px 15px;
     color: white;
+    border: none;
+    width: auto;
 }
 
 .userBtn:hover {
-    box-shadow: 2 2 yellow;
+    box-shadow: 0 2px 2px yellow;
 }
 
 .dropdown {
     float: right;
     padding: 0px;
-    font-size: 16px;
+    font-size: 1vw;
+    width: auto;
 }
 
 .dropdown-menu {
     font-family: sans-serif;
+    background-color: grey;
+    width: auto;
+}
+.dropdown-menu:hover {
+    color: yellow;
     background-color: grey;
 }
 
@@ -93,28 +141,31 @@ header {
 
 #login {
     float: right;
-    font-size: 15px;
-    color: white;
+    font-size: 1vw;
+    color: grey;
     text-decoration: none;
     padding: 2px;
 }
 
-#log {
-    background-color: grey;
-    font-size: 15px;
-    color: black;
-    text-decoration: none;
-    
+#login:hover {
+    color: white;
 }
 
-#log:hover {  
+.log {
+    background-color: grey;
+    font-size: 1vw;
+    color: black;
+    border: none;
+}
+
+.log:hover {  
     color: yellow;
 }
 
 .title {
     color: rgb(200, 200, 200);
     text-shadow: 0 0 30px black;
-    font-size: 4vw;
+    font-size: 3vw;
     font-family: serif;
     cursor: default;
     font-weight: BOLD;
@@ -147,7 +198,7 @@ header {
     color: white;
     text-decoration: none;
     padding: 10px 50px;
-    font-size: 20px;
+    font-size: 1.5vw;
 }
 /*
 .myNav li.active a {
@@ -157,4 +208,26 @@ header {
 .myNav li a:hover {
     border: 1px solid white;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.filter {
+    color: white;
+    font-size: 1.3vw;
+    text-align: center;
+    word-spacing: 5;
+    padding: 10px;
+}
+
+.filter select {
+    background-color: black;
+    color: yellow;
+    margin-right: 30;
+    border-bottom: 1px dashed white;
+    padding: 4px;
+}
+
+.filter button {
+    background-color: grey;
+    color: orange;
+    border: none;
 }

@@ -11,6 +11,8 @@ class Databaze {
         // informace se berou ze settings
         $this->db = new PDO("mysql:host=$db_server; dbname=$db_name", $db_user, $db_pass);
         session_start();
+        $q = "SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'";
+        $this->db->query($q);
     }
     
     /**
@@ -82,6 +84,42 @@ class Databaze {
         return true;
     }
     
+    /** Zmeni heslo uzivatele */
+    public function changePassword($newPass) {
+        $sql = "UPDATE uzivatel SET heslo = :newPass WHERE login = :login";
+        
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':newPass', $newPass);
+        $query->bindParam(':login', $_SESSION['user']['login']);
+    
+        $res = $this->executeQuery($query);
+    
+        if($res == null){
+            return false;
+        } else {
+            $_SESSION["user"] = $this->allUserInfo($_SESSION["user"]["login"]);
+            return true;
+        }
+    }
+    
+    /** Zmeni uzivateli jmeno ve hre */
+    public function changeGameNick($newNick) {
+        $sql = "UPDATE uzivatel SET jmeno_ve_hre = :newNick WHERE login = :login";
+        
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':newNick', $newNick);
+        $query->bindParam(':login', $_SESSION['user']['login']);
+    
+        $res = $this->executeQuery($query);
+        
+        if($res == null){
+            return false;
+        } else {
+            $_SESSION["user"] = $this->allUserInfo($_SESSION["user"]["login"]);
+            return true;
+        }
+    }
+    
     /**
      *  Odhlasi uzivatele.
      */
@@ -124,7 +162,6 @@ class Databaze {
         $query->bindParam(':login', $login);
     
         $res = $this->executeQuery($query);
-        
         $res = $query->fetchAll();
         /*
         if($res == null) {
@@ -137,11 +174,43 @@ class Databaze {
         }
         */
         if($res != null && count($res) > 0){
-            //// change
             return $res[0];
         } else {
             return null;
         }
+    }
+    
+    public function getAllTanks() {
+        $sql = "SELECT * FROM tank;";
+        $query = $this->db->prepare($sql);
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+    
+        foreach($res as $r) {
+            $pole[$r["nazev_tanku"]]["id"] = $r["idtank"];
+            $pole[$r["nazev_tanku"]]["nazev"] = $r["nazev_tanku"];
+            $pole[$r["nazev_tanku"]]["narod"] = $r["narod"];
+            $pole[$r["nazev_tanku"]]["uroven"] = $r["uroven"];
+            $pole[$r["nazev_tanku"]]["typ"] = $r["typ"];
+            $pole[$r["nazev_tanku"]]["popis"] = $r["popis"];
+            $pole[$r["nazev_tanku"]]["vydrz"] = $r["vydrz"];
+            $pole[$r["nazev_tanku"]]["poskozeni"] = $r["poskozeni"];
+            $pole[$r["nazev_tanku"]]["prubojnost"] = $r["prubojnost"];
+            $pole[$r["nazev_tanku"]]["dpm"] = $r["dpm"];
+            $pole[$r["nazev_tanku"]]["vez"] = $r["pancir_veze"];
+            $pole[$r["nazev_tanku"]]["korba"] = $r["pancir_korby"];
+            $pole[$r["nazev_tanku"]]["dopredu"] = $r["max_rychlost_dopredu"];
+            $pole[$r["nazev_tanku"]]["dozadu"] = $r["max_rychlost_dozadu"];
+            $pole[$r["nazev_tanku"]]["deprese"] = $r["deprese_dela"];
+            $pole[$r["nazev_tanku"]]["elevace"] = $r["elevace_dela"];
+            $pole[$r["nazev_tanku"]]["dohled"] = $r["dohled"];
+            $pole[$r["nazev_tanku"]]["nabijeni"] = $r["rychlost_nabijeni"];
+            $pole[$r["nazev_tanku"]]["nabijeni_zasobniku"] = $r["cas_nabiti_celeho_zasobniku"];
+            $pole[$r["nazev_tanku"]]["zamereni"] = $r["rychlost_zamereni"];
+            $pole[$r["nazev_tanku"]]["img"] = $r["img"];
+        }
+        
+        return $pole;
     }
     
     /**
@@ -150,6 +219,8 @@ class Databaze {
      *  @return object          Vysledek dotazu.
      */
     private function executeQuery($query){
+        // dotaz kvuli diakritice cestiny
+        
         $res = $query->execute();
         if (!$res) {
             $error = $this->db->errorInfo();
@@ -165,13 +236,17 @@ class Databaze {
      *  @param object $obj  Objekt s vysledky dotazu.
      *  @return array       Pole s vysledky dotazu.
      */
+    /*
     private function resultObjectToArray($obj){
         // získat po řádcích            
         /*while($row = $vystup->fetch(PDO::FETCH_ASSOC)){
             $pole[] = $row['login'].'<br>';
-        }*/
+        }
         return $obj->fetchAll(); // všechny řádky do pole        
     }
+        */
+
+    
 }
 
 ?>

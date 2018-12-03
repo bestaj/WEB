@@ -16,14 +16,27 @@ class ZakladPrihlaseni {
     <!doctype>
     <html lang="cs">
         <head>
-            <meta charset="utf-8">
+            <meta charset="utf8">
             <title><?php echo $title; ?></title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+            
+            <script>
+                function testPassword() {
+                    if (document.getElementById('pass1').value == document.getElementById('pass2').value) {
+                        document.getElementById('submitBtn').disabled=false;
+                        document.getElementById('output').innerHTML = "";
+                    }
+                    else {
+                        document.getElementById('output').innerHTML = "Nestejná hesla";
+                        document.getElementById('submitBtn').disabled=true;
+                    }
+                }  
+            </script>
+       
             <link rel="stylesheet" href="views/css/CSS_default2.css">
 
         </head>

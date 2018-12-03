@@ -21,7 +21,7 @@ class TankyController {
        
         // Naplneni globalnich promennych
         $tplData['title'] = "Tanky";
-    //    $tplData['data'] = $this->db->getAllIntroductions();
+        $tplData['data'] = $this->db->getAllTanks();
         
         
         // vypsani prislusne sablony
