@@ -21,7 +21,15 @@ class TankyController {
        
         // Naplneni globalnich promennych
         $tplData['title'] = "Tanky";
-        $tplData['data'] = $this->db->getAllTanks();
+        
+        if (isset($_POST["filtruj"])) {
+            echo $_POST["uroven"];
+            $tplData["tanks"] = $this->db->filterTanks($_POST["narod"], $_POST["typ"], $_POST["uroven"]);
+        }
+        else {
+            $tplData["tanks"] = $this->db->getAllTanks();     
+        }
+       
         
         
         // vypsani prislusne sablony

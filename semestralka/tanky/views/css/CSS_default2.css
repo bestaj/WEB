@@ -42,14 +42,26 @@ button {
     font-size: 1.2vw;
 }
 
-.homeLink {
-    margin: 0 0 20 0;
+#homeLink {
+    margin: 0 0 2%;
     font-size: 1.8vw;
     text-decoration: none;
-    padding: 10;
+    padding: 2%;
     position: fixed;
     top: 10;
     right: 10;
+}
+
+#homeLink:hover {
+    color: #cc7a00;
+}
+
+.form a {
+    text-decoration: none;
+}
+
+.form a:hover {
+    color: yellow;
 }
 
 .items {
@@ -72,29 +84,29 @@ button {
 
 .userInfo {
     font-size: 1.7vw;
-    border-bottom: 1px solid yellow;
     padding: 3%;
     margin: 0 auto;   
     overflow: auto;
     text-align: left;
 }
 
-#userInfoChangeBtn {
+#changeBtn {
+    color: #cc7a00;
+    font-size: 1.2vw;
     background-color: #404040;
     border: none;
     float: right;
     margin-right: 3%;
 }
 
-#userInfoChangeBtn a {
-    color: #cc7a00;
-}
-
-#userInfoChangeBtn a:hover {
+#changeBtn:hover {
     color: #ff9900;
 }
 
-#listOfContributionsBtn {
+#reportsBtn {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
     margin: 20;
 }
 
@@ -116,9 +128,29 @@ td {
     padding-left: 20;
 }
 
-#userAdded {
+#userReports {
     color: white;
     font-size: 1.4vw;
+}
+
+.report {
+    background-color: rgba(255, 150, 0, 0.2);
+    border: 1px solid red;
+    margin: 3%;
+    padding: 3%;
+}
+
+.report span {
+    padding: 1%;
+}
+
+#date {
+    color: red;
+    font-size: 1.1vw;
+}
+
+#name {
+    color: yellow;
 }
 
 .form {
@@ -174,4 +206,26 @@ td {
 .zprava a {
     font-size: 15px;
     color: deepskyblue;
+}
+
+#spravaUzivatelu {
+    color: white;
+    font-size: 1.2vw;
+    margin: 3% 0;
+    padding: 2%;
+    border: 2px dashed yellow;
+    text-align: center;
+}
+
+#spravaUzivatelu select {
+    color: black;
+}
+
+#spravaUzivatelu span {
+    padding-right: 5%;
+}
+
+#changeRightBtn {
+    color: orange;
+    background-color: grey;
 }

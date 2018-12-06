@@ -36,7 +36,6 @@ class ZakladPrihlaseni {
                     }
                 }  
             </script>
-       
             <link rel="stylesheet" href="views/css/CSS_default2.css">
 
         </head>

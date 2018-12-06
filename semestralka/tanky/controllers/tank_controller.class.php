@@ -1,6 +1,6 @@
 <?php
 
-class MapyController {
+class TankController {
     
     private $db;
     
@@ -14,26 +14,30 @@ class MapyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "mapy";
+        $_SESSION["logoutPage"] = "tank";
         require "controllers/logout.php";
         
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         
         // Naplneni globalnich promennych
-        $tplData['title'] = "Mapy";
+        $tplData["tank"] = $this->db->getTank($_GET["tank"]);
+        $tplData["title"] = "Tank ".$tplData["tank"]["nazev_tanku"];
         
-        if (isset($_POST["filtruj"])) {
-            $tplData["maps"] = $this->db->filterMaps($_POST["typ"], $_POST["mod"]);
+        $tplData["rating"] = $this->db->getTankRating($tplData["tank"]["nazev_tanku"]);
+        
+        if($this->db->isUserLoged()) {
+            $tplData["prihlasen"] = true;
         }
         else {
-            $tplData["maps"] = $this->db->getAllMaps();     
+            $tplData["prihlasen"] = false;
         }
+        
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
-        require "views/mapy.php";
+        require "views/tank.php";
         // ziskam obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
@@ -41,3 +45,4 @@ class MapyController {
         return $obsah;
     }
 }
+?>

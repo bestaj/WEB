@@ -11,13 +11,14 @@ $hlavicky->getHeader($tplData['title']);
 
 ?>
     <div class="profilBox">
-        <a class="homeLink glyphicon glyphicon-home" href="index.php?page=domu">Domů</a>
+        <a id="homeLink" class="glyphicon glyphicon-home" href="index.php?page=domu">Domů</a>
         <!-- Zobrazeni profilu, nelze menit osobni udaje -->
         
-        <?php if (!$_SESSION["userInfoChange"]) { ?>
+        <?php if (!$tplData["userInfoChange"]) { ?>
         <div class="userInfo">
-            <button id="userInfoChangeBtn" type="button" onclick="<?php $_SESSION['userInfoChange'] = true ?>">
-                    <a href="index.php?page=profil">Změnit osobní údaje</a></button>
+            <form href="index.php?page=profil" method="post">
+                <input id="changeBtn" name="changeUserInfoON" type="submit" value="Změnit osobní údaje">
+            </form>
             <table>
                 <tr>
                     <td>Uživatelské jméno:</td>
@@ -36,20 +37,45 @@ $hlavicky->getHeader($tplData['title']);
                     <td class="value"><?php echo $_SESSION["user"]["nazev"] ?></td>
                 </tr>
             </table>
+            <?php if ($tplData["isAdmin"]) { ?>
+            <div id="spravaUzivatelu">
+                <p>Správa uživatelů</p>
+                <form href="index.php?page=profil" method="post">
+                    <span>Uživatel: 
+                    <select name="uzivatel">
+                        <?php foreach($tplData["users"] as $user) {
+                                echo "<option value=\"".$user['login']."\">".$user['login']." (".$user['nazev'].")</option>";
+                            } ?>
+                    </select></span>
+                    <span>Právo:
+                    <select name="pravo">
+                        <?php foreach($tplData["rights"] as $right) {
+                                echo "<option value=\"".$right."\">".$right."</option>";
+                            } ?>
+                    </select></span>
+                    <input id="changeBtn" type="submit" name="zmenPravo" value="Přiřaď">
+                </form>
+            </div>
+            <?php } ?>
         </div>
         
-       <button id="listOfContributionsBtn" data-toggle="collapse" data-target="#userAdded">Seznam příspěvků</button>
+       <button id="reportsBtn" data-toggle="collapse" data-target="#userReports">Seznam příspěvků</button>
         
-        <div id="userAdded" class="collapse">
-        dkjshgfjshgfihjgiehgrjknvkjegniewnfij
+        <div id="userReports" class="collapse">
+            <?php foreach($tplData["reports"] as $report) { ?>
+            <div class="report">
+                <span id="date"><?php echo $report["datum_prispevku"]?></span><br>
+                <span id="name"><?php echo $report["nazev"]?></span><br>
+                <span><?php echo $report["popis"]?></span><br>
+            </div>
+                        
+                <?php   } ?>
         </div>
         
         <?php } 
         /* Zmena osobnich udaju */ 
         else { ?>
-      
-            <button id="userInfoChangeBtn" type="button" onclick="<?php $_SESSION['userInfoChange'] = false ?>">
-                    <a href="index.php?page=profil">Zpět</a></button>
+            <a id="changeBtn" href="index.php?page=profil">Zpět</a> 
              <div class="items">        
                 <form action="index.php?page=profil" method="post" oninput="testPassword()">
                     <fieldset>

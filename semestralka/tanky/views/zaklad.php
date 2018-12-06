@@ -68,9 +68,9 @@ class Zaklad {
                 <button class="userBtn dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
                     <?php echo $_SESSION["user"]["login"] ?></button>
                 <ul class="dropdown-menu">
-                    <li><a class="log" href="index.php?page=profil">Profil</a></li>
+                    <li><a id="log" href="index.php?page=profil">Profil</a></li>
                     <li><form action="index.php?page=<?php echo $_SESSION['logoutPage']?>" method="post">
-                            <input class="log" type="submit" name="logout" value="Odhlásit">
+                            <input id="log" type="submit" name="logout" value="Odhlásit">
                         </form>
                     </li>
                 </ul>

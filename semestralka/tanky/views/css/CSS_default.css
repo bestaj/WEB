@@ -15,7 +15,7 @@ header {
 }
 
 .content1 {
-    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/sq.jpg);
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/background-home.jpg);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -27,7 +27,7 @@ header {
 }
 
 .content2 {
-    background-image: url(../images/tanky-background.jpg);
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/background-tanks.jpg);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -35,11 +35,19 @@ header {
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
-    height: 100%;
+    height: auto;
 }
 
 .content3 {
-    
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/background-tips.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    height: auto;
 }
 
 .tipBox {
@@ -61,11 +69,12 @@ header {
 }
 
 .myContainer {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.6);
     margin:0 15% 3%;
     border-color: white;
     border-style: double;
     height: auto;
+    overflow: auto;
 }
 
 .article {
@@ -120,28 +129,22 @@ h2 {
 
 .dropdown {
     float: right;
-    padding: 0px;
-    font-size: 1vw;
-    width: auto;
+    font-size: 1.1vw;
 }
 
-.dropdown-menu {
+.dropdown-menu ul{
     font-family: sans-serif;
-    background-color: grey;
-    width: auto;
-}
-.dropdown-menu:hover {
-    color: yellow;
-    background-color: grey;
+    background-color: white;
+    
 }
 
 .dropdown-toggle {
-    margin-right: 30px;
+    margin-right: 30;
 }
 
 #login {
     float: right;
-    font-size: 1vw;
+    font-size: 1.1vw;
     color: grey;
     text-decoration: none;
     padding: 2px;
@@ -151,15 +154,18 @@ h2 {
     color: white;
 }
 
-.log {
-    background-color: grey;
-    font-size: 1vw;
+#log {
+    background-color: white;
+    font-size: 1.1vw;
+    text-align: center;
     color: black;
+    text-decoration: none;
     border: none;
+    width: 100%;
 }
-
-.log:hover {  
-    color: yellow;
+#log:hover {
+    color: white;
+    background-color: black;
 }
 
 .title {
@@ -190,25 +196,23 @@ h2 {
 
 .myNav li {
     display: inline-block;
-    padding: 0 0 20 0;
-    
+    margin: 1% 3%;
+    background-color: black;
+    border: 1px solid white;
 }
 
 .myNav li a {
     color: white;
     text-decoration: none;
-    padding: 10px 50px;
+    padding: 5px;
     font-size: 1.5vw;
 }
-/*
-.myNav li.active a {
-    border-bottom: 1px solid white;
-}
-*/
+
 .myNav li a:hover {
-    border: 1px solid white;
-    background-color: rgba(0, 0, 0, 0.5);
+    color: black;
+    background-color: white;
 }
+
 
 .filter {
     color: white;
@@ -219,6 +223,7 @@ h2 {
 }
 
 .filter select {
+    font-size: 1.3vw;
     background-color: black;
     color: yellow;
     margin-right: 30;
@@ -226,8 +231,127 @@ h2 {
     padding: 4px;
 }
 
-.filter button {
+.filter input {
     background-color: grey;
     color: orange;
     border: none;
+}
+
+.list {
+    text-align: center;
+    margin: 0 10%;
+}
+
+.list a:hover {
+    text-decoration: none;
+}
+
+.item {
+    background-color: rgba(0,0,0,0.7); 
+    color: white;
+    padding: 2%;
+    margin: 3%;
+    border: 1px solid white;
+    overflow: auto;
+}
+
+.item:hover {
+    background-image: radial-gradient(rgba(255, 200, 0, 0.5), rgba(0, 0, 0, 0.8));
+    border: 1px dotted yellow;
+}
+
+.item img {
+    width: 20%;
+    float: right;
+}
+
+table {
+    color: white;
+    font-size: 1.2vw;
+    width: 50%;
+}
+
+tr td {
+    padding: 4px;
+}
+
+
+#name {
+    color: red;
+    font-size: 1.5vw;
+    text-align: center;
+    margin-left: 0 auto;
+}
+
+.value {
+    color: orange;
+}
+
+#noItems {
+    color: red;
+    font-size: 1.2vw;
+}
+
+/* Vypis jedne polozky -tank nebo mapa */
+
+#itemName {
+    color: rgb(255, 230, 0);
+    padding-bottom: 5px;
+    font-size: 2.2vw;
+}
+
+.itemPanel {
+    background-image: linear-gradient(rgba(100, 100, 100, 0.1), rgba(100, 100, 100, 0.9));
+    color: white;
+    text-align: center;
+    padding: 3%;
+}
+
+.itemPanel span {
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.itemPanel img {
+    width: 40%;
+}
+
+.itemPanel table {
+    margin: 5% auto;
+    color: white;
+}
+
+#ratingLbl {
+    color: rgb(255, 230, 0);
+    font-size: 1.2vw;
+    text-decoration: underline;
+}
+
+#ratePanel input {
+    color: black;
+}
+
+#rateBtn {
+    color: white;
+    font-size: 1.2vw;
+    background-image: linear-gradient(rgba(255, 150, 0, 0.8), rgba(0, 0, 0, 0.8));
+}
+
+#noTableRow {
+    float: right;
+    border: none;
+    background-color: inherit;
+}
+
+.rating table tr td {
+    background-color: grey;
+    border: 2px solid black;
+}
+
+#maxValue {
+    color: red;
+}
+
+#avgValue {
+    color: yellow;
 }

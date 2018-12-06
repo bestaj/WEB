@@ -1,6 +1,6 @@
 <?php
 
-class MapyController {
+class MapaController {
     
     private $db;
     
@@ -14,26 +14,29 @@ class MapyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "mapy";
+        $_SESSION["logoutPage"] = "mapa";
         require "controllers/logout.php";
         
         // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         
         // Naplneni globalnich promennych
-        $tplData['title'] = "Mapy";
+        $tplData["mapa"] = $this->db->getMap($_GET["mapa"]);
+        $tplData["title"] = "Mapa ".$tplData["mapa"]["nazev_mapy"];
+        $tplData["rating"] = $this->db->getMapRating($_SESSION["item"]["nazev_mapy"]);
         
-        if (isset($_POST["filtruj"])) {
-            $tplData["maps"] = $this->db->filterMaps($_POST["typ"], $_POST["mod"]);
+        if($this->db->isUserLoged()) {
+            $tplData["prihlasen"] = true;
         }
         else {
-            $tplData["maps"] = $this->db->getAllMaps();     
+            $tplData["prihlasen"] = false;
         }
+        
         // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
-        require "views/mapy.php";
+        require "views/mapa.php";
         // ziskam obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
@@ -41,3 +44,4 @@ class MapyController {
         return $obsah;
     }
 }
+?>
