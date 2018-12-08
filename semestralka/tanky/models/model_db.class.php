@@ -69,6 +69,80 @@ class Databaze {
         }
     }
     
+    /* Pridame novou mapu */
+    public function addNewMap($nazev, $typ, $velikost, $mody, $popis, $img) {
+        if ($popis == "") {
+            $popis = null;
+        }
+        
+        if ($img == null) {
+            $img = "unknown.png";
+        }
+        
+        $sql = "INSERT INTO mapa (idmapa, nazev_mapy, typ, velikost, mody, popis, img) VALUES (NULL, :nazev, :typ, :velikost, :mody, :popis, :img)";
+        
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':nazev', $nazev);
+        $query->bindParam(':typ', $typ);
+        $query->bindParam(':velikost', $velikost);
+        $query->bindParam(':mody', $mody);
+        $query->bindParam(':popis', $popis);
+        $query->bindParam(':img', $img);
+        
+        $res = $this->executeQuery($query);
+        
+        if($res == null){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    /* Pridame novy tank */
+    public function addNewTank($nazev, $narod, $tier, $typ, $vydrz, $poskozeni, $prubojnost, $dpm, $pancir_veze, $pancir_korby, $rychlost_dopredu, $rychlost_dozadu, $deprese, $elevace, $dohled, $rychlost_nabijeni, $doba_nabiti_zasobniku, $rychlost_zamereni, $popis, $img) {
+        if ($doba_nabiti_zasobniku == "") {
+            $doba_nabiti_zasobniku = null;
+        }
+        if ($popis == "") {
+            $popis = null;
+        }
+        
+        if ($img == null) {
+            $img = "unknown.png";
+        }
+        $sql = "INSERT INTO tank (idtank, nazev_tanku, narod, uroven, typ, popis, vydrz, poskozeni, prubojnost, dpm, pancir_veze, pancir_korby, max_rychlost_dopredu, max_rychlost_dozadu, deprese_dela, elevace_dela, dohled, rychlost_nabijeni, cas_nabiti_celeho_zasobniku, rychlost_zamereni, img) VALUES (NULL, :nazev, :narod, :tier, :typ, :popis, :vydrz, :poskozeni, :prubojnost, :dpm, :pancir_veze, :pancir_korby, :rychlost_dopredu, :rychlost_dozadu, :deprese, :elevace, :dohled, :rychlost_nabijeni, :doba_nabiti_zasobniku, :rychlost_zamereni, :img)";
+        
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':nazev', $nazev);
+        $query->bindParam(':narod', $narod);
+        $query->bindParam(':tier', $tier);
+        $query->bindParam(':typ', $typ);
+        $query->bindParam(':vydrz', $vydrz);
+        $query->bindParam(':poskozeni', $poskozeni);
+        $query->bindParam(':prubojnost', $prubojnost);
+        $query->bindParam(':dpm', $dpm);
+        $query->bindParam(':pancir_veze', $pancir_veze);
+        $query->bindParam(':pancir_korby', $pancir_korby);
+        $query->bindParam(':rychlost_dopredu', $rychlost_dopredu);
+        $query->bindParam(':rychlost_dozadu', $rychlost_dozadu);
+        $query->bindParam(':deprese', $deprese);
+        $query->bindParam(':elevace', $elevace);
+        $query->bindParam(':dohled', $dohled);
+        $query->bindParam(':rychlost_nabijeni', $rychlost_nabijeni);
+        $query->bindParam(':doba_nabiti_zasobniku', $doba_nabiti_zasobniku);
+        $query->bindParam(':rychlost_zamereni', $rychlost_zamereni);
+        $query->bindParam(':popis', $popis);
+        $query->bindParam(':img', $img);
+        
+        $res = $this->executeQuery($query);
+        
+        if($res == null){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
     /**
      *  Overi heslo uzivatele a pokud je spravne, tak uzivatele prihlasi.
      *  @param string $login    Login uzivatele.
@@ -143,7 +217,7 @@ class Databaze {
     }
     
     /** Zjisti zda je uzivatel prihlasen */
-    public function isUserLoged() {
+    public function isUserLogged() {
         return isset($_SESSION["user"]);
     }
     
@@ -186,13 +260,61 @@ class Databaze {
     
     /* Vrati vsechny tanky podle filtru */
     public function filterTanks($narod, $typ, $uroven) {
-        $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ AND t.uroven = :uroven;";
-        $query = $this->db->prepare($sql);
+        if ($narod == "vse" && $typ == "vse" && $uroven == "vse") {
+            $sql = "SELECT * FROM tank ORDER BY narod, uroven, typ;";
+            $query = $this->db->prepare($sql);
+        }
+        else {
+            // Filtrujeme podle naroda
+            if ($narod != "vse" && $typ == "vse" && $uroven == "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':narod', $narod);            
+            }
+            // Filtrujeme podle typu
+            elseif ($narod == "vse" && $typ != "vse" && $uroven == "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.typ = :typ ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':typ', $typ);
+            }
+            // Filtrujeme podle urovne
+            elseif ($narod == "vse" && $typ == "vse" && $uroven != "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':uroven', $uroven);
+            }
+            // Filtrujeme podle naroda a typu
+            elseif ($narod != "vse" && $typ != "vse" && $uroven == "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':narod', $narod);
+                $query->bindParam(':typ', $typ);
+            }
+            // Filtrujeme podle naroda a urovne
+            elseif ($narod != "vse" && $typ == "vse" && $uroven != "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':narod', $narod);
+                $query->bindParam(':uroven', $uroven);
+            }
+            // Filtrujeme podle typu a urovne
+            elseif ($narod == "vse" && $typ != "vse" && $uroven != "vse") {
+                $sql = "SELECT * FROM tank t WHERE t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':typ', $typ);
+                $query->bindParam(':uroven', $uroven);
+            }
+            // Filtrujeme podle vsech hodnot
+            else {
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $query = $this->db->prepare($sql);
+
+                $query->bindParam(':narod', $narod);
+                $query->bindParam(':typ', $typ);
+                $query->bindParam(':uroven', $uroven);
+            }
+        }
         
-        $query->bindParam(':narod', $narod);
-        $query->bindParam(':typ', $typ);
-        $query->bindParam(':uroven', $uroven);
-    
         $res = $this->executeQuery($query);
         $res = $query->fetchAll();
     
@@ -223,11 +345,31 @@ class Databaze {
     
     /* Vrati vsechny mapy podle filtru */
     public function filterMaps($typ, $mod) {
-        $sql = "SELECT * FROM mapa m WHERE m.typ = :typ AND m.mod LIKE %:mod%;";
-        $query = $this->db->prepare($sql);
+        if ($typ == "vse" && $mod == "vse") {
+            $sql = "SELECT * FROM mapa ORDER BY typ;";
+            $query = $this->db->prepare($sql);
+        }
+        else {
+            if ($typ != "vse" && $mod == "vse") {
+                $sql = "SELECT * FROM mapa m WHERE m.typ = :typ ORDER BY typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':typ', $typ); 
+                
+            }
+            else if ($typ == "vse" && $mod != "vse") {
+                $sql = "SELECT * FROM mapa m WHERE m.mody LIKE '%:mod%' ORDER BY typ;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':mod', $mod); 
+            }
+            else {
+                $sql = "SELECT * FROM mapa m WHERE m.typ = :typ AND m.mody LIKE %:mod%;";
+                $query = $this->db->prepare($sql);
+                $query->bindParam(':typ', $typ); 
+                $query->bindParam(':mod', $mod); 
+            }   
+        }
         
-        $query->bindParam(':typ', $typ);
-        $query->bindParam(':mod', $mod);
+        
     
         $res = $this->executeQuery($query);
         $res = $query->fetchAll();

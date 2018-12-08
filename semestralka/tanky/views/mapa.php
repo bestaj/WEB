@@ -58,7 +58,7 @@ $hlavicky->getHeader($tplData['title']);
                                 <tr><td>Prostor k manévrování (objíždění tanků):</td><td><input type="number" name="manevrovani" min="0" max="10" size="2" step="1"></td></tr>
                                 <tr><td>Koridorová:</td><td><input type="number" name="koridorova" min="0" max="10" size="2" step="1"></td></tr>
                                 <tr><td>Kempící pozice:</td><td><input type="number" name="kempeni" min="0" max="10" size="2" step="1"></td></tr>
-                                <tr><td id="noTableRow"><input id="rateBtn" type="submit" name="rating" value="Potvrdit"></td></tr>
+                                <tr><td></td><td id="noTableRow"><input id="rateBtn" type="submit" name="rating" value="Potvrdit"></td></tr>
                             </form>
                         </table>
                     </div>
@@ -73,6 +73,9 @@ $hlavicky->getHeader($tplData['title']);
                  
                  <!-- Panel s prispevkama od uzivatelu k dane mape -->
                 <div class="contributionPanel">
+                    <?php 
+                        if ($tplData["isUserLogged"]) {
+                    ?>
                     <label id="prispevekLbl" for="novyPrispevek">Nový příspěvek:</label>
                     <form action="index.php?page=mapa" method="post">
                         <textarea class="novyPrispevek" name="popis" placeholder="Přidat vlastní příspěvek..."></textarea><br>
@@ -80,6 +83,8 @@ $hlavicky->getHeader($tplData['title']);
                     </form>
                     
                     <?php 
+                        }
+                     if ($tplData["reports"] != null) {
                         foreach($tplData["reports"] as $report) {
                     ?>
                         <div class="report">
@@ -88,11 +93,17 @@ $hlavicky->getHeader($tplData['title']);
                                 <span id="date">Datum příspěvku: <?php echo $report["datum_prispevku"] ?></span><br>
                             </div>
                             
-                            <div id="describe"><?php echo $report["popis"] ?></div>
+                            <?php echo htmlspecialchars("<div id=\"describe\">".$report['popis']."</div>"); ?>
                         </div>
                     
                     <?php
                         }
+                     } 
+                     else { 
+                    ?>
+                    <span id="prispevekLbl">Žádné komentáře... </span>
+                    <?php
+                    }
                     ?>
                     
                 </div>

@@ -1,6 +1,6 @@
 <?php
 
-class MapyController {
+class PridatMapuController {
     
     private $db;
     
@@ -14,42 +14,30 @@ class MapyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        global $tplData;
-        
         // Testujeme odhlaseni uzivatele
         if (isset($_POST["logout"])) {
             $this->db->userLogout();
         }
         
-        // Zjistime, zda je prihlaseny uzivatel autor nebo admin
-        if ($this->db->isUserLogged()) {
-            if ($_SESSION["user"]["idpravo"] != 3) {
-                $tplData["isA"] = true;
-            }
-            else {
-                $tplData["isA"] = false;
-            }
-        }
-        else {
-            $tplData["isA"] = false;
+        if (isset($_POST["addNewMap"])) {
+            $this->db->addNewMap($_POST["nazev"], $_POST["typ"], $_POST["velikost"], $_POST["mody"], $_POST["popis"], $_FILES["img"]["name"]);
+            
+            $target_dir = "views/images/maps/";
+            $target_file = $target_dir.basename($_FILES["img"]["name"]);
+            move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
         }
         
-        $_SESSION["logoutPage"] = "mapy";
+        $_SESSION["logoutPage"] = "domu";
+    
+        global $tplData;
         
         // Naplneni globalnich promennych
-        $tplData['title'] = "Mapy";
+        $tplData["title"] = "Nová mapa";
         
-        if (isset($_POST["filtruj"])) {
-            $tplData["maps"] = $this->db->filterMaps($_POST["typ"], $_POST["mod"]);
-        }
-        else {
-            $tplData["maps"] = $this->db->getAllMaps();     
-        }
-    
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
-        require "views/mapy.php";
+        require "views/pridat_mapu.php";
         // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
@@ -57,3 +45,5 @@ class MapyController {
         return $obsah;
     }
 }
+
+?>

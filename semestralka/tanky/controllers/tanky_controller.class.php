@@ -21,13 +21,25 @@ class TankyController {
             $this->db->userLogout();
         }
         
+        // Zjistime, zda je prihlaseny uzivatel autor nebo admin
+        if ($this->db->isUserLogged()) {
+            if ($_SESSION["user"]["idpravo"] != 3) {
+                $tplData["isA"] = true;
+            }
+            else {
+                $tplData["isA"] = false;
+            }
+        }
+        else {
+            $tplData["isA"] = false;
+        }
+        
         $_SESSION["logoutPage"] = "tanky";
         
         // Naplneni globalnich promennych
         $tplData['title'] = "Tanky";
         
         if (isset($_POST["filtruj"])) {
-            echo $_POST["uroven"];
             $tplData["tanks"] = $this->db->filterTanks($_POST["narod"], $_POST["typ"], $_POST["uroven"]);
         }
         else {

@@ -1,0 +1,22 @@
+#title {
+    font-size: 28px;
+    padding-bottom: 10px;
+}
+
+.specifies {
+    text-align: center;
+    padding: 20px;
+}
+
+.specifies table {
+    color: white;
+    margin: auto;
+}
+
+.specifies table tr td {
+    font-size: 18px;
+}
+
+.value2 {
+    color: black;
+}

@@ -12,6 +12,15 @@ $hlavicky->getHeader($tplData['title']);
     
     <div class="content2">
         <div class="myContainer">
+            <?php 
+            // Administrator a autor muze pridat novy tank 
+            if ($tplData["isA"]) {
+            ?>
+                <a id="addNewBtn" href="index.php?page=novaMapa">Přidat novou mapu</a>
+            <?php
+                }
+            ?>
+            
             <div class="filter">
                 <form action="index.php?page=mapy" method="post">
                     <span>Typ:</span>

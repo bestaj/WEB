@@ -21,6 +21,8 @@ const WEB_PAGES = [
     "profil" => array("file" => "profil_controller.class.php", "object" => "ProfilController", "title" => "Profil uživatele"),
     "prihlaseni" => array("file" => "prihlaseni_controller.class.php", "object" => "PrihlaseniController", "title" => "Přihlášení"),
     "registrace" => array("file" => "registrace_controller.class.php", "object" => "RegistraceController", "title" => "Registrace"),
+    "novyTank" => array("file" => "pridat_tank_controller.class.php", "object" => "PridatTankController", "title" => "Nový tank"),
+    "novaMapa" => array("file" => "pridat_mapu_controller.class.php", "object" => "PridatMapuController", "title" => "Nová mapa")
 ];
 
 // Defaultni webova stranka

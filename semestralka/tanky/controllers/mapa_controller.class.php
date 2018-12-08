@@ -46,7 +46,7 @@ class MapaController {
         $tplData["rating"] = $this->db->getMapRating($tplData["mapa"]["nazev_mapy"]);
         $tplData["reports"] = $this->db->getAllMapReports($_SESSION["itemId"]);
         
-        if($this->db->isUserLoged()) {
+        if($this->db->isUserLogged()) {
             $tplData["isUserLogged"] = true;
         }
         else {

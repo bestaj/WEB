@@ -50,7 +50,7 @@ class TankController {
         $tplData["reports"] = $this->db->getAllTankReports($_SESSION["itemId"]);
         
         // Testujem, zda je uzivatel prihlasen
-        if($this->db->isUserLoged()) {
+        if($this->db->isUserLogged()) {
             $tplData["isUserLogged"] = true;
         }
         else {
