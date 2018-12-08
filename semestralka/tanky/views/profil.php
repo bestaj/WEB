@@ -53,7 +53,7 @@ $hlavicky->getHeader($tplData['title']);
                                 echo "<option value=\"".$right."\">".$right."</option>";
                             } ?>
                     </select></span>
-                    <input id="changeBtn" type="submit" name="zmenPravo" value="Přiřaď">
+                    <input id="changeBtn" type="submit" name="changeRight" value="Přiřaď">
                 </form>
             </div>
             <?php } ?>

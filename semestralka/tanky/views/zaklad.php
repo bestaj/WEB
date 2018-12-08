@@ -33,13 +33,22 @@ class Zaklad {
                 <?php $this->getLoginBox()?>
                 </div>
                 <p class="title">Buď lepší<br><span>ve</span><br>World of Tanks</p>                
-            <div class="myNav"> 
-                <ul>
-                    <li><a href="index.php?page=domu">Domů</a></li>
-                    <li><a href="index.php?page=tanky">Tanky</a></li> 
-                    <li><a href="index.php?page=mapy">Mapy</a></li> 
-                    <li><a href="index.php?page=tipy">Rady a Tipy</a></li> 
-                </ul>
+            <div class="myNav">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul>
+                        <li><a href="index.php?page=domu">Domů</a></li>
+                        <li><a href="index.php?page=tanky">Tanky</a></li> 
+                        <li><a href="index.php?page=mapy">Mapy</a></li> 
+                        <li><a href="index.php?page=tipy">Rady a Tipy</a></li> 
+                    </ul>
+                </div>
             </div>
             </header>
             

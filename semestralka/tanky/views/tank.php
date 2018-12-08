@@ -57,25 +57,59 @@ $hlavicky->getHeader($tplData['title']);
                 <?php 
                     } else { 
                 ?>
-                        <span>Tento tank dosud nemá žádné hodnocení.</span><br>
+                        <span id="infoNoReports">Tento tank dosud nemá žádné hodnocení.</span><br>
 
                     <?php   
                         } 
-                ?>
-                <button id="rateBtn" data-toggle="collapse" data-target="#ratePanel">Hodnotit</button><br>
+                        if ($tplData["isUserLogged"]) {
+                    ?>
+                <button id="rateBtn" data-toggle="collapse" data-target="#ratePanel">Vaše hodnocení</button><br>
                     <div id="ratePanel" class="collapse">
                         <table>
                             <form id="rate" action="index.php?page=tank" method="post">
-                                <tr><td>Přesnost děla:</td><td><input type="number" name="presnost" value="0" min="0" max="10" size="3" step="1"></td></tr> 
-                                <tr><td>Rychlost nabíjení:</td><td><input type="number" name="nabijeni" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                                <tr><td>Maximální rychlost:</td><td><input type="number" name="rychlost" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                                <tr><td>Pohyblivost:</td><td><input type="number" name="pohyblivost" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                                <tr><td>Dohled:</td><td><input type="number" name="dohled" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                                <tr><td>Pancíř:</td><td><input type="number" name="pancir" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                                <tr><td id="noTableRow"><input id="rateBtn" type="submit" name="odeslatHodnoceni" value="Potvrdit"></td></tr>
+                                <tr><td>Přesnost děla:</td><td><input type="number" name="presnost" min="0" max="10" size="2" step="1"></td></tr> 
+                                <tr><td>Rychlost nabíjení:</td><td><input type="number" name="nabijeni" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Maximální rychlost:</td><td><input type="number" name="rychlost" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Pohyblivost:</td><td><input type="number" name="pohyblivost" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Dohled:</td><td><input type="number" name="dohled" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Pancíř:</td><td><input type="number" name="pancir" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td id="noTableRow"><input id="rateBtn" type="submit" name="rating" value="Potvrdit"></td></tr>
                             </form>
                         </table>
                     </div>
+                <?php 
+                    } 
+                    else {
+                ?>
+                    <span>Hodnotit mohou pouze přihlášení uživatelé.</span>
+                <?php
+                    }
+                ?>
+                <!-- Panel s prispevkama od uzivatelu k danemu tanku -->
+                <div class="contributionPanel">
+                    <label id="prispevekLbl" for="novyPrispevek">Nový příspěvek:</label>
+                    <form action="index.php?page=tank" method="post">
+                        <textarea class="novyPrispevek" name="popis" placeholder="Přidat vlastní příspěvek..."></textarea><br>
+                        <input id="addBtn" type="submit" name="addReport" value="Přidat">
+                    </form>
+                    
+                    <?php 
+                        foreach($tplData["reports"] as $report) {
+                    ?>
+                        <div class="report">
+                            <div class="row">
+                                <span id="author">Autor: <?php echo $report["login"] ?></span>
+                                <span id="date">Datum příspěvku: <?php echo $report["datum_prispevku"] ?></span><br>
+                            </div>
+                            
+                            <div id="describe"><?php echo $report["popis"] ?></div>
+                        </div>
+                    
+                    <?php
+                        }
+                    ?>
+                    
+                </div>
                 
             </div>
         </div>

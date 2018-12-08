@@ -14,11 +14,14 @@ class MapyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "mapy";
-        require "controllers/logout.php";
-        
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
+        
+        // Testujeme odhlaseni uzivatele
+        if (isset($_POST["logout"])) {
+            $this->db->userLogout();
+        }
+        
+        $_SESSION["logoutPage"] = "mapy";
         
         // Naplneni globalnich promennych
         $tplData['title'] = "Mapy";
@@ -29,15 +32,15 @@ class MapyController {
         else {
             $tplData["maps"] = $this->db->getAllMaps();     
         }
-        // vypsani prislusne sablony
+    
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
         require "views/mapy.php";
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty
         return $obsah;
     }
 }

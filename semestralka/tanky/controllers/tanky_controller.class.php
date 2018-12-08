@@ -14,11 +14,15 @@ class TankyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "tanky";
-        require "controllers/logout.php";
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
-       
+        
+        // Testujeme odhlaseni uzivatele
+        if (isset($_POST["logout"])) {
+            $this->db->userLogout();
+        }
+        
+        $_SESSION["logoutPage"] = "tanky";
+        
         // Naplneni globalnich promennych
         $tplData['title'] = "Tanky";
         
@@ -29,18 +33,15 @@ class TankyController {
         else {
             $tplData["tanks"] = $this->db->getAllTanks();     
         }
-       
-        
-        
-        // vypsani prislusne sablony
+      
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
         require "views/tanky.php";
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty
         return $obsah;
     }
 }

@@ -25,8 +25,7 @@ class Databaze {
         // Kazdy novy uzivatel ma defaultne nastaveno pravo "Recenzent"
         $idpravo = 3;
         
-        $sql = "INSERT INTO uzivatel(login,heslo,email,jmenoVeHre,idpravo)
-                VALUES (:login,:heslo,:email,:jmenoVeHre,:idpravo)";
+        $sql = "INSERT INTO uzivatel VALUES (:login,:heslo,:email,:jmenoVeHre,:idpravo)";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
@@ -155,7 +154,7 @@ class Databaze {
      */
     public function allUserInfo($login){
         
-        $sql = "SELECT u.login, u.heslo, u.email, u.jmeno_ve_hre, u.idpravo, p.nazev 
+        $sql = "SELECT u.iduzivatel, u.login, u.heslo, u.email, u.jmeno_ve_hre, u.idpravo, p.nazev 
                 FROM uzivatel u, pravo p
                 WHERE u.login = :login AND p.idpravo = u.idpravo;";
     
@@ -265,6 +264,47 @@ class Databaze {
         return $res;
     }
     
+    /* Vrati vsechny prispevky k dane mape */
+    public function getAllTankReports($idtank) {
+        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_tanku p WHERE p.idtank = :idtank ORDER BY datum_prispevku DESC) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel;";
+        
+        $query = $this->db->prepare($sql);
+        
+        $query->bindParam(':idtank', $idtank);
+    
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+        return $res;
+    } 
+
+    
+    
+    /* Vrati vsechny prispevky k dane mape */
+    public function getAllMapReports($idmapa) {
+        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_mape p WHERE p.idmapa = :idmapa ORDER BY datum_prispevku DESC) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel;";
+        
+        $query = $this->db->prepare($sql);
+        
+        $query->bindParam(':idmapa', $idmapa);
+    
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+        return $res;
+    } 
+    
+    /* Vrati login uzivatele podle jeho ID */
+    public function getLoginById($iduzivatel) {
+        $sql = "SELECT login FROM uzivatel WHERE iduzivatel = :iduzivatel;";
+        
+        $query = $this->db->prepare($sql);
+        
+        $query->bindParam(':iduzivatel', $iduzivatel);
+    
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+        return $res;
+    }
+    
     /* Vrati hodnoceni daneho tanku */
     public function getTankRating($tank) {
         $sql = "SELECT * FROM hodnoceni_tanku WHERE idtank = (SELECT idtank FROM tank WHERE nazev_tanku = :tank)";
@@ -294,7 +334,9 @@ class Databaze {
         }
     }
     
-    /* Vrati hodnoceni dane mapy */
+    /* Vrati hodnoceni dane mapy 
+       Zprumeruje vsechny polozky v hodnoceni
+    */
     public function getMapRating($mapa) {
         $sql = "SELECT * FROM hodnoceni_mapy WHERE idmapa = (SELECT idmapa FROM mapa WHERE nazev_mapy = :mapa)";
         
@@ -399,8 +441,42 @@ class Databaze {
         return $res[0]["idpravo"];
     }
     
-    public function saveTankRating($iduzivatel, $idtank, $presnost, $nabijeni, $rychlost, $pohyblivost, $dohled, $pancir) {
-        $sql = "";
+    public function saveTankReport($iduzivatel, $idtank, $popis, $datum) {
+        $sql = "INSERT INTO prispevek_k_tanku (iduzivatel, idtank, popis, datum_prispevku) VALUES (:iduzivatel, :idtank, :popis, :datum);";
+        
+        $query = $this->db->prepare($sql);
+        
+        $query->bindParam(':iduzivatel', $iduzivatel);
+        $query->bindParam(':idtank', $idtank);
+        $query->bindParam(':popis', $popis);
+        $query->bindParam(':datum', $datum);
+        
+        $res = $this->executeQuery($query);
+    }
+    
+    public function saveMapReport($iduzivatel, $idmapa, $popis, $datum) {
+        $sql = "INSERT INTO prispevek_k_mape (iduzivatel, idmapa, popis, datum_prispevku) VALUES (:iduzivatel, :idmapa, :popis, :datum);";
+        
+        $query = $this->db->prepare($sql);
+        
+        $query->bindParam(':iduzivatel', $iduzivatel);
+        $query->bindParam(':idmapa', $idmapa);
+        $query->bindParam(':popis', $popis);
+        $query->bindParam(':datum', $datum);
+        
+        $res = $this->executeQuery($query);
+    }
+    
+    public function saveTankRating($iduzivatel, $idtank, $presnost, $nabijeni, $rychlost, $pohyblivost, $dohled, $pancir, $datum) {
+        
+        if ($this->alreadyRatedTank($iduzivatel, $idtank)) {
+            $sql = "UPDATE hodnoceni_tanku h SET presnost_dela = :presnost, rychlost_nabijeni = :nabijeni, 
+            maximalni_rychlost = :rychlost, pohyblivost = :pohyblivost, dohled = :dohled, pancir = :pancir, 
+            datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idtank = :idtank;";
+        }
+        else {
+            $sql = "INSERT INTO hodnoceni_tanku (iduzivatel, idtank, presnost_dela, rychlost_nabijeni, maximalni_rychlost, pohyblivost, dohled, pancir, datum_hodnoceni) VALUES (:iduzivatel, :idtank, :presnost, :nabijeni, :rychlost, :pohyblivost, :dohled, :pancir, :datum);";
+        }
         
         $query = $this->db->prepare($sql);
         
@@ -412,14 +488,22 @@ class Databaze {
         $query->bindParam(':pohyblivost', $pohyblivost);
         $query->bindParam(':dohled', $dohled);
         $query->bindParam(':pancir', $pancir);
+        $query->bindParam(':datum', $datum);
         
         $res = $this->executeQuery($query);
         
     }
     
-    public function saveMapRating($iduzivatel, $idmapa, $vyvazenost, $vegetace, $budovy, $spotovani, $manevrovani, $koridorova, $kempeni) {
-        $sql = "";
-        
+    public function saveMapRating($iduzivatel, $idmapa, $vyvazenost, $vegetace, $budovy, $spotovani, $manevrovani, $koridorova, $kempeni, $datum) {
+        if ($this->alreadyRatedMap($iduzivatel, $idmapa)) {
+            $sql = "UPDATE hodnoceni_mapy h SET vyvazena = :vyvazenost, bohatost_vegetace = :vegetace, mestska = :budovy, vhodna_ke_spotovani = :spotovani, prostor_k_objizdeni = :manevrovani, koridorova = :koridorova, 
+            kempici_pozice = :kempeni, datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idmapa = :idmapa;";
+            echo "update map";
+        }
+        else {
+            $sql = "INSERT INTO hodnoceni_mapy (iduzivatel, idmapa, vyvazena, bohatost_vegetace, mestska, vhodna_ke_spotovani, prostor_k_objizdeni, koridorova, kempici_pozice, datum_hodnoceni) VALUES (:iduzivatel, :idmapa, :vyvazenost, :vegetace, :budovy, :spotovani, :manevrovani, :koridorova, :kempeni, :datum);";
+        }
+            
         $query = $this->db->prepare($sql);
         
         $query->bindParam(':iduzivatel', $iduzivatel);
@@ -431,8 +515,43 @@ class Databaze {
         $query->bindParam(':manevrovani', $manevrovani);
         $query->bindParam(':koridorova', $koridorova);
         $query->bindParam(':kempeni', $kempeni);
+        $query->bindParam(':datum', $datum);
         
         $res = $this->executeQuery($query);
+    }
+    
+    public function alreadyRatedMap($iduzivatel, $idmapa) {
+        $sql = "SELECT * FROM hodnoceni_mapy h WHERE :idmapa = h.idmapa AND :iduzivatel = h.iduzivatel;";
+
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':idmapa', $idmapa);
+        $query->bindParam(':iduzivatel', $iduzivatel);
+        
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+        
+        if (!$res)
+            return false;
+        else
+            return true;
+    }
+    
+    public function alreadyRatedTank($iduzivatel, $idtank) {
+        $sql = "SELECT * FROM hodnoceni_tanku h WHERE :idtank = h.idtank AND :iduzivatel = h.iduzivatel;";
+
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':idtank', $idtank);
+        $query->bindParam(':iduzivatel', $iduzivatel);
+        
+        $res = $this->executeQuery($query);
+        $res = $query->fetchAll();
+       
+        if (!$res) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     
     /* Vrati tank podle jeho id */

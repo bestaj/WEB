@@ -38,7 +38,8 @@ class RegistraceController {
         global $tplData;
         $tplData['loginAlreadyExist'] = false;
         $tplData['differentPassword'] = false;
-        // zpracovani odeslanych formularu
+        
+        // zpracovani formulace
         if(isset($_POST['potvrzeni'])){ // nova registrace
             if($_POST["pass1"]==$_POST["pass2"]){
                 if($this->db->allUserInfo($_POST["log-in"])!=null){ // tento uzivatel uz existuje
@@ -60,7 +61,6 @@ class RegistraceController {
             } else {
                 $tplData['differentPassword'] = true;
             }
-
         }
     }
 }

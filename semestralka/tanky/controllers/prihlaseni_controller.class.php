@@ -14,25 +14,23 @@ class PrihlaseniController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         
-        // overi prihlaseni uzivatele
+        // Overi prihlaseni uzivatele
         $this->confirmLogin();
+        
         // Naplneni globalnich promennych
         $tplData['title'] = "Přihlášení";
         
-        // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
         require "views/prihlaseni.php";
         
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
         
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty
         return $obsah;
     }
     

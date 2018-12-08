@@ -14,17 +14,16 @@ class ProfilController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "domu";
-        require "controllers/logout.php";
-        $this->confirmUserChanges();
-        
-        if (isset($_POST["zmenPravo"])) {
-            $this->db->changeRight($_POST["uzivatel"], $_POST["pravo"]);
-        }
-        
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
         
+        $this->confirmUserChanges();
+        
+        $_SESSION["logoutPage"] = "domu";
+        
+        if (isset($_POST["changeRight"])) {
+            $this->db->changeRight($_POST["uzivatel"], $_POST["pravo"]);
+        }
+     
         // Nastaveni nazvu stranky
         $tplData["title"] = "Profil uživatele ".$_SESSION['user']['login'];
         
@@ -44,15 +43,14 @@ class ProfilController {
         $tplData["userRight"] = $this->db->getRight($_SESSION["user"]["login"]);
         $tplData["isAdmin"] = $_SESSION["user"]["idpravo"] == 1 ? true : false;
         
-        // vypsani prislusne sablony
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
         require "views/profil.php";
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty
         return $obsah;
     }
     

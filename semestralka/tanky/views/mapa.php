@@ -20,10 +20,12 @@ $hlavicky->getHeader($tplData['title']);
                     <tr><td>Možné režimy bitev:</td><td class="value"><?php echo $tplData["mapa"]["mody"] ?></td></tr>
                 </table>
                  
-                <label id="ratingLbl">Hodnocení mapy</label>
+                <label id="ratingLbl">Hodnocení mapy</label><br>
         
 
-                <?php if ($tplData["rating"] != null) { ?>
+                <?php 
+                    if ($tplData["rating"] != null) { 
+                 ?>
                 <div class="rating">
                     <table>
                         <tr><td>Vyváženost mapy (hratelnostně)</td><td><span id="avgValue"><?php echo $tplData["rating"][0] ?></span> / <span id="maxValue">10</span></td></tr>
@@ -34,28 +36,66 @@ $hlavicky->getHeader($tplData['title']);
                         <tr><td>Koridorová</td><td><span id="avgValue"><?php echo $tplData["rating"][5] ?></span> / <span id="maxValue">10</span></td></tr>
                         <tr><td>Kempící pozice</td><td><span id="avgValue"><?php echo $tplData["rating"][6] ?></span> / <span id="maxValue">10</span></td></tr>
                     </table>
+                 </div>
+                    <?php 
+                        } else { 
+                    ?>
+                        <span>Tato mapa dosud nemá žádné hodnocení.</span><br>
 
-                    <button id="rateBtn" data-toggle="collapse" data-target="#ratePanel">Hodnotit</button><br>
+                    <?php
+                        }
+                        // Prihlaseny uzivatel ma moznost hodnotit mapu
+                        if ($tplData["isUserLogged"]) {
+                    ?>
+                    <button id="rateBtn" data-toggle="collapse" data-target="#ratePanel">Vaše hodnocení</button><br>
                     <div id="ratePanel" class="collapse">
-                    <table>
-                        <form id="rate" action="index.php?page=mapa" method="post">
-                            <tr><td>Vyváženost mapy (hratelnostně):</td><td><input type="number" name="vyvazenost" value="0" min="0" max="10" size="3" step="1"></td></tr> 
-                            <tr><td>Bohatost vegetace:</td><td><input type="number" name="vegetace" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td>Množství budov:</td><td><input type="number" name="budovy" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td>Vhodná pro spotování:</td><td><input type="number" name="spotovani" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td>Prostor k manévrování (objíždění tanků):</td><td><input type="number" name="manevrovani" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td>Koridorová:</td><td><input type="number" name="koridorova" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td>Kempící pozice:</td><td><input type="number" name="kempeni" value="0" min="0" max="10" size="3" step="1"></td></tr>
-                            <tr><td id="noTableRow"><input id="rateBtn" type="submit" name="odeslatHodnoceni" value="Potvrdit"></td></tr>
-                        </form>
-                    </table>
+                        <table>
+                            <form id="rate" action="index.php?page=mapa" method="post">
+                                <tr><td>Vyváženost mapy (hratelnostně):</td><td><input type="number" name="vyvazenost" min="0" max="10" size="2" step="1"></td></tr> 
+                                <tr><td>Bohatost vegetace:</td><td><input type="number" name="vegetace" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Množství budov:</td><td><input type="number" name="budovy" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Vhodná pro spotování:</td><td><input type="number" name="spotovani" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Prostor k manévrování (objíždění tanků):</td><td><input type="number" name="manevrovani" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Koridorová:</td><td><input type="number" name="koridorova" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td>Kempící pozice:</td><td><input type="number" name="kempeni" min="0" max="10" size="2" step="1"></td></tr>
+                                <tr><td id="noTableRow"><input id="rateBtn" type="submit" name="rating" value="Potvrdit"></td></tr>
+                            </form>
+                        </table>
+                    </div>
+                    <?php 
+                        } 
+                        else { 
+                    ?>  
+                        <span>Hodnotit mohou pouze přihlášení uživatelé.</span>        
+                    <?php
+                        }
+                    ?>
+                 
+                 <!-- Panel s prispevkama od uzivatelu k dane mape -->
+                <div class="contributionPanel">
+                    <label id="prispevekLbl" for="novyPrispevek">Nový příspěvek:</label>
+                    <form action="index.php?page=mapa" method="post">
+                        <textarea class="novyPrispevek" name="popis" placeholder="Přidat vlastní příspěvek..."></textarea><br>
+                        <input id="addBtn" type="submit" name="addReport" value="Přidat">
+                    </form>
+                    
+                    <?php 
+                        foreach($tplData["reports"] as $report) {
+                    ?>
+                        <div class="report">
+                            <div class="row">
+                                <span id="author">Autor: <?php echo $report["login"] ?></span>
+                                <span id="date">Datum příspěvku: <?php echo $report["datum_prispevku"] ?></span><br>
+                            </div>
+                            
+                            <div id="describe"><?php echo $report["popis"] ?></div>
+                        </div>
+                    
+                    <?php
+                        }
+                    ?>
+                    
                 </div>
-                </div>
-                <?php } else { ?>
-                        <span>Tato mapa dosud nemá žádné hodnocení.</span>
-
-                    <?php   } ?>
-                
             </div>
         </div>
 

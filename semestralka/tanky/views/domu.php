@@ -11,7 +11,7 @@ $hlavicky->getHeader($tplData['title']);
 ?>   <div class="content1">
         <div class="myContainer">
             <div class="article">
-                <h1>Poděl se o své zkušenosti ze světa tanků prostřednictvým hodnocení jednotlivých tanků a map, a pomož tak se zlepšit začínajícím hráčům!</h1>
+                <h1>Poděl se o své zkušenosti ze světa tanků prostřednictvím hodnocení jednotlivých tanků a map, a pomož tak se zlepšit začínajícím hráčům!</h1>
 
                 <h2>Tvorba a obsah webu</h2>
                 Tento web byl vytvořen za účelem sdílení svých zkušeností z "wotka" mezi hráči, tak aby se každý tankista mohl přiučit něco nového a lépe tak ovládnout bojiště s jakýmkoliv tankem.

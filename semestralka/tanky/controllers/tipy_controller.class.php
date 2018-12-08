@@ -14,25 +14,26 @@ class TipyController {
      *  @return string Obsah stranky
      */
     public function getResult() {
-        $_SESSION["logoutPage"] = "tipy"; 
-        require "controllers/logout.php";
-        
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
-       
+        
+        // Testujeme odhlaseni uzivatele
+        if (isset($_POST["logout"])) {
+            $this->db->userLogout();
+        }
+        
+        $_SESSION["logoutPage"] = "tipy"; 
+        
         // Naplneni globalnich promennych
         $tplData['title'] = "Rady a tipy";
-        //    $tplData['data'] = $this->db->getAllIntroductions();
-        
-        // vypsani prislusne sablony
+       
         // Zapneme output buffer pro odchyceni vypisu sablony
         ob_start();
         // Pripojime sablonu
         require "views/tipy.php";
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu
         $obsah = ob_get_clean();
 
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty
         return $obsah;
     }
 }

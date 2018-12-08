@@ -203,9 +203,14 @@ h2 {
 
 .myNav li a {
     color: white;
+    font-weight: bold;
     text-decoration: none;
     padding: 5px;
     font-size: 1.5vw;
+}
+
+.myNav li:hover {
+    border: 1px solid black;
 }
 
 .myNav li a:hover {
@@ -313,7 +318,7 @@ tr td {
 }
 
 .itemPanel img {
-    width: 40%;
+    width: 30%;
 }
 
 .itemPanel table {
@@ -329,6 +334,11 @@ tr td {
 
 #ratePanel input {
     color: black;
+}
+
+#infoNoReports {
+    color: red;
+    padding: 5px;
 }
 
 #rateBtn {
@@ -354,4 +364,77 @@ tr td {
 
 #avgValue {
     color: yellow;
+}
+
+/* Panel s prispevkama */
+
+.contributionPanel {
+    background-image: url(../images/logo.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: auto;
+    text-align: center;
+    margin: 5%;
+    padding: 5px;
+}
+
+#prispevekLbl {
+    margin: 5px 0 0;
+    padding: 5;
+    border: 1px solid grey;
+    font-size: 20px;
+    background-color: black;
+}
+
+#addBtn {
+    color: yellow;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: black;
+    border: 1px solid yellow;
+}
+.novyPrispevek {
+    color: white;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0.95);
+    border: 1px solid yellow;
+    width: 70%;
+    height: 150;
+}
+
+.report {
+    color: white;
+    font-size: 15px;
+    background-color: rgba(0,0,0,0.95);
+    border: 1px solid grey;
+    width: 70%;
+    margin: 15px auto;    
+}
+
+#author {
+    padding: 20px;
+    float: left;
+    color: deepskyblue;
+}
+
+#date {
+    padding: 20px;
+    float: right;
+    color: deepskyblue;
+}
+
+#describe {
+    font-size: 18px;
+    padding: 10 20;
+    text-align: left;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
 }
