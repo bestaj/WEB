@@ -92,8 +92,7 @@ $hlavicky->getHeader($tplData['title']);
                                 <span id="author">Autor: <?php echo $report["login"] ?></span>
                                 <span id="date">Datum příspěvku: <?php echo $report["datum_prispevku"] ?></span><br>
                             </div>
-                            
-                            <?php echo htmlspecialchars("<div id=\"describe\">".$report['popis']."</div>"); ?>
+                            <div id="describe"><?php echo $report["popis"] ?></div> 
                         </div>
                     
                     <?php

@@ -26,7 +26,7 @@ class MapaController {
         
         $_SESSION["logoutPage"] = "mapa";
         if (isset($_GET["mapa"])) {
-            $_SESSION["itemId"] = $_GET["mapa"];
+            $_SESSION["itemId"] = $_GET["mapa"] + 0;
             
         }
         
@@ -39,7 +39,8 @@ class MapaController {
         
         // Testujeme zadost pro novy prispevek
         if (isset($_POST["addReport"])) {
-            $this->db->saveMapReport($_SESSION["user"]["iduzivatel"], $tplData["mapa"]["idmapa"], $_POST["popis"], date("Y-m-d"));
+            $this->db->saveMapReport($_SESSION["user"]["iduzivatel"], $tplData["mapa"]["idmapa"], 
+                                     htmlspecialchars($_POST["popis"]), date("Y-m-d"));
         }
         
         $tplData["title"] = "Mapa ".$tplData["mapa"]["nazev_mapy"];

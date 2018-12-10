@@ -10,7 +10,7 @@ global $tplData;
 $hlavicky->getHeader($tplData['title']);
 ?>
     
-    <div class="content2">
+    <div class="background2">
         <div class="myContainer">
             <?php 
             // Administrator a autor muze pridat novy tank 
@@ -40,6 +40,7 @@ $hlavicky->getHeader($tplData['title']);
                      <input type="submit" name="filtruj" value="Filtruj">
                 </form>  
             </div>
+            <!-- Vypis vsech vybranych polozek, podle filtru -->
             <div class="list">
                 <?php if ($tplData["maps"] != null)
                             foreach($tplData["maps"] as $mapa) { 
@@ -47,14 +48,18 @@ $hlavicky->getHeader($tplData['title']);
                 <a href="index.php?page=mapa&mapa=<?php echo $mapa["idmapa"] ?>">
                     
                     <div class="item">
-                        <span id="name"><?php echo $mapa["nazev_mapy"]?></span><br>
-                        
-                        <img src="views/images/maps/<?php echo $mapa['img'] ?>"> 
-                        <table>
-                            <tr><td>Typ:</td><td><span class="value"><?php echo $mapa["typ"]?></span></td></tr>
-                            <tr><td>Velikost:</td><td><span class="value"><?php echo $mapa["velikost"]?></span></td></tr>
-                            <tr><td>Mód:</td><td><span class="value"><?php echo $mapa["mody"]?></span></td></tr>
-                        </table>
+                        <span id="name" class="row"><?php echo $mapa["nazev_mapy"]?></span><br>
+                        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 spec">
+                            <span>Typ:</span><br>
+                            <span>Velikost:</span><br>
+                            <span>Mód:</span><br>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 spec">
+                            <span class="value"><?php echo $mapa["typ"]?></span><br>
+                            <span class="value"><?php echo $mapa["velikost"]?></span><br>
+                            <span class="value"><?php echo $mapa["mody"]?></span><br>
+                        </div>
+                        <img class="col-xs-12 col-sm-4 col-md-4 col-lg-4" src="views/images/maps/<?php echo $mapa['img'] ?>">
                     </div>
                 </a>
                 <?php } else {  ?>

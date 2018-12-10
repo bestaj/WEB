@@ -9,17 +9,21 @@ global $tplData;
 
 $hlavicky->getHeader($tplData['title']);
 ?>
-    <div class="contentBox">
+    <div class="loginBox">
         <div class="form">
-            <?php if ($tplData['loginAlreadyExist']) { ?>
+            <?php 
+                if ($tplData['loginAlreadyExist']) { 
+            ?>
                     <span>Tento login již existuje.</span>
-            <?php } else { 
-                        if ($tplData['differentPassword']) { ?>
-                            <span>Hesla nejsou stejná.</span>
-                <?php   }
+            <?php 
+                } else { 
+                    if ($tplData['differentPassword']) { 
+            ?>
+                        <span>Hesla nejsou stejná.</span>
+            <?php       }
                     }
             ?>
-            <form class="reg-form" action="index.php?page=registrace" method="post">
+            <form action="index.php?page=registrace" method="post">
                 <label for="login">*Uživatelské jméno</label>
                 <input type="text" name="log-in" id="login" required>
                 <label for="p1">*Heslo</label>

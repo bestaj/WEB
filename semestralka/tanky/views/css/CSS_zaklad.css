@@ -1,0 +1,809 @@
+/***************************************** Universal **************************************/
+/******************************************************************************************/
+
+/***************** Generally **********************/
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/background-tanks.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    height: auto;
+}
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.05)), url(../images/himmel.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.myContainer {
+    background-color: rgba(0,0,0,0.6);
+    border-color: white;
+    border-style: double;
+    height: auto;
+    overflow: auto;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-family: serif;
+}
+
+h2 {
+    color: yellow;
+    text-align: center;
+}
+
+/********************** Header *********************/
+
+.loginPanel {
+    float: right;
+    color: #d9d9d9;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    text-align: right;
+}
+
+.loginPanel a { 
+    color: rgba(255,255,50,0.5);
+}
+
+.loginPanel a:hover {
+    color: rgb(255,255,50);
+}
+
+#title {
+    color: rgb(200, 200, 200);
+    text-shadow: 0 0 30px black;
+    font-family: serif;
+    cursor: default;
+    font-weight: BOLD;
+    text-align: center;
+}
+
+.myNav {
+    list-style: none;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+    font-family: serif;
+}
+
+.myNav ul {
+    margin: 0; 
+}
+
+.myNav li {
+    margin: 1% 3%;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.myNav li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.myNav li:hover {
+    border: 1px solid black;
+}
+
+.myNav li a:hover {
+    color: black;
+    background-color: white;
+}
+
+#login {
+    float: left;
+    color: grey;
+    text-decoration: none;
+    padding: 2px;
+}
+
+#login:hover {
+    color: white;
+}
+
+#log {
+    background-color: white;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+}
+
+#log:hover {
+    color: white;
+    background-color: black;
+}
+
+.userBtn {
+    background-color: black;
+    color: white;
+    border: none;
+    width: auto;
+}
+
+.userBtn:hover {
+    box-shadow: 0 2px 2px yellow;
+}
+
+.dropdown {
+    float: left;
+}
+
+.dropdown-menu ul{
+    font-family: sans-serif;
+    background-color: white;
+}
+
+/******************* Home page *********************/
+
+.background1 {
+    background-image: linear-gradient(rgba(30, 30, 30, 0), rgba(30, 30, 30, 1)), url(../images/background-home.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    height: auto;
+}
+
+.article {
+    color: white;
+}
+
+/****************** Tanks and maps page *********************/
+
+#addNewBtn {
+    text-align: center;
+    text-decoration: none;
+    color: deepskyblue;
+    background-color: black;
+    border: 3px dashed red;
+    padding: 4px;
+    margin: 2%;
+}
+
+#addNewBtn:hover {
+    border-color: orange;
+}
+
+.filter {
+    color: white;
+    text-align: center;
+    word-spacing: 5;
+}
+
+.filter select {
+    background-color: black;
+    color: yellow;
+    border-bottom: 1px dashed white;
+}
+
+.filter input {
+    background-color: grey;
+    color: orange;
+    border: none;
+}
+
+.list {
+    text-align: center;
+    margin: 0 10%;
+}
+
+.list a:hover {
+    text-decoration: none;
+}
+
+.item {
+    background-color: rgba(0,0,0,0.7); 
+    color: white;
+    padding: 2%;
+    margin: 3%;
+    border: 1px solid white;
+    overflow: auto;
+
+}
+
+.item:hover {
+    background-image: radial-gradient(rgba(255, 200, 0, 0.5), rgba(0, 0, 0, 0.8));
+    border: 1px dotted yellow;
+}
+
+.item img {
+    float: right;
+}
+
+table {
+    color: white;
+    margin: 10 auto;
+}
+
+tr td {
+    padding: 4px;
+}
+
+
+#name {
+    color: red;
+    text-align: center;
+    margin-left: 0 auto;
+}
+.spec {
+    text-align: left;
+}
+
+.value {
+    color: orange;
+}
+
+#noItems {
+    color: red;
+}
+
+/***************** Specific tank or map *************/
+
+#itemName {
+    color: rgb(255, 230, 0);
+    padding-bottom: 5px;
+}
+
+.itemPanel {
+    background-image: linear-gradient(rgba(100, 100, 100, 0.1), rgba(100, 100, 100, 0.9));
+    color: white;
+    text-align: center;
+    padding: 3%;
+}
+
+.itemPanel span {
+    display: inline-block;
+}
+
+.itemPanel img {
+    width: 30%;
+}
+
+.itemPanel table {
+    margin: 5% auto;
+    color: white;
+}
+
+#ratingLbl {
+    color: rgb(255, 230, 0);
+    text-decoration: underline;
+}
+
+#ratePanel input {
+    color: black;
+}
+
+#infoNoReports {
+    color: red;
+    padding: 5px;
+}
+
+#rateBtn {
+    color: white;
+    background-image: linear-gradient(rgba(255, 150, 0, 0.8), rgba(0, 0, 0, 0.8));
+}
+
+#ratePanel rateBtn {
+    color: white;
+}
+
+#noTableRow {
+    color: white;
+    border: none;
+    background-color: inherit;
+}
+
+.rating table tr td {
+    background-color: grey;
+    border: 2px solid black;
+}
+
+#maxValue {
+    color: red;
+}
+
+#avgValue {
+    color: yellow;
+}
+
+.contributionPanel {
+    background-image: url(../images/logo.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: auto;
+    text-align: center;
+    margin: 5%;
+    padding: 5px;
+    border: 2px double white;
+}
+
+#prispevekLbl {
+    margin: 5px 0 0;
+    padding: 5;
+    border: 1px solid grey;
+    background-color: black;
+}
+
+#addBtn {
+    color: yellow;
+    font-weight: bold;
+    background-color: black;
+    border: 1px solid yellow;
+}
+.novyPrispevek {
+    color: white;
+    background-color: rgba(0,0,0,0.95);
+    border: 1px solid yellow;
+}
+
+.report {
+    color: white;
+    background-color: rgba(0,0,0,0.95);
+    border: 1px solid grey;    
+}
+
+#author {
+    float: left;
+    color: deepskyblue;
+}
+
+#date {
+    float: right;
+    color: deepskyblue;
+}
+
+#describe {
+    text-align: left;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+/******************* New tank or map page *********************/
+
+.specifies {
+    text-align: center;
+}
+
+.specifies table {
+    color: white;
+    margin: auto;
+}
+
+.value2 {
+    color: black;
+}
+
+/***************** Tips and tricks page ***********************/
+
+.tipBox {
+    margin: 10px;
+    color: white;
+    text-align: center;
+}
+
+.tipBox button {
+    background-color: black;
+    border: 1px solid yellow;
+}
+
+.tipBox button:hover {
+    box-shadow: 1px 1px 0 2px orange;
+}
+
+/*************************************** Tablet and PC ***********************************/
+/*****************************************************************************************/
+
+@media only screen and (min-width: 767px) {
+    
+    /***************** Generally **********************/
+    .myContainer {
+        margin: 0 15% 3%;
+        padding: 0 10px;
+    }
+    
+    h1 {
+        font-size: 38px;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+    
+    /********************** Header *********************/
+
+    .loginPanel {
+        padding: 10px 30px 8px 10px; 
+        font-size: 14px;
+    }
+
+    .loginPanel a { 
+        font-size: 14px;
+    }
+
+    #title {
+        font-size: 40px;
+    }
+
+    #title span {
+        line-height: 10%;
+        font-size: 32;
+    }
+
+    .myNav li {
+        display: inline-block;
+    }
+
+    .myNav li a {
+        padding: 5px;
+        font-size: 20px;
+    }
+    
+    #login {
+        font-size: 18px;
+    }
+    
+    #log {
+        font-size: 18px;
+    }
+    
+    .userBtn {
+        padding: 5px 15px 7px 15px;
+    }
+    
+    .dropdown {
+        font-size: 18px;
+    }
+    
+    /******************* Home page *********************/
+    
+    .article {
+        margin: 10%;
+        font-size: 22px;
+    }
+
+    /**************** Tanks and maps page **************/
+    
+    #addNewBtn {
+        font-size: 18px;
+    }
+
+    .filter {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .filter select {
+        font-size: 18px;
+        margin-right: 30;
+        padding: 4px;
+    }
+
+    table {
+        font-size: 20px;
+        width: 50%;
+    }
+
+    tr td {
+        padding: 4px;
+    }
+
+    #name {
+        font-size: 24px;
+    }
+
+    #noItems {
+        font-size: 14px;
+    }
+    
+    .item img {
+        width: 30%;
+    }
+    
+    .spec {
+        font-size: 18px;
+    }
+    
+    /***************** Specific tank or map *************/
+    
+    #itemName {
+        font-size: 32px;
+    }
+
+    .itemPanel span {
+        font-size: 18px;
+    }
+
+    #ratingLbl {
+        font-size: 18px;
+    }
+
+    #rateBtn {
+        font-size: 16px;
+    }
+
+    #prispevekLbl {
+        font-size: 20px;
+    }
+
+    #addBtn {
+        font-size: 18px;
+    }
+    
+    .novyPrispevek {
+        font-size: 15px;
+        width: 70%;
+        height: 150;
+    }
+
+    .report {
+        font-size: 15px;
+        width: 70%;
+        margin: 10px auto;    
+    }
+
+    #author {
+        padding: 15px;
+    }
+
+    #date {
+        padding: 15px;
+    }
+
+    #describe {
+        font-size: 18px;
+        padding: 0 10;
+    }
+
+    /******************* New tank or map page *********************/
+
+    #title2 {
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+
+    .specifies {
+        padding: 20px;
+    }
+
+    .specifies table tr td {
+        font-size: 18px;
+    }
+    
+    /***************** Tips and tricks page *************/
+    
+    .tipBox {
+        font-size: 18px;
+        padding: 2% 5% 0;
+    }
+
+    .tipBox button {
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+}
+
+/*************************************** Mobile ******************************************/
+/*****************************************************************************************/
+
+@media only screen and (max-width: 766px) {
+    
+    /***************** Generally **********************/
+    
+    .myContainer {
+        margin: 0 5% 2%;
+        padding: 2px;
+    }
+    
+    h1 {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 17px;
+    }
+    
+    /********************** Header *********************/
+
+    .loginPanel {
+        padding: 7px 20px 5px 7px; 
+        font-size: 10px;
+    }
+
+    .loginPanel a {
+        font-size: 10px;
+    }
+
+    #title {
+        font-size: 22px;
+    }
+
+    #title span {
+        line-height: 8%;
+        font-size: 15px;
+    }
+
+    .myNav li {
+        display: inline-block;
+        margin: 1% 2%;
+    }
+
+    .myNav li a {
+        padding: 3px;
+        font-size: 14px;
+    }
+
+    #login {
+        font-size: 12px;
+    }
+    
+    #log {
+        text-align: center;
+        font-size: 12px;
+    }
+    
+    .userBtn {
+        padding: 5px 15px 7px 15px;
+    }
+
+    .dropdown {
+        font-size: 12px;
+    }
+    
+    /******************* Home page *********************/
+    
+    .article {
+        color: white;
+        margin: 10%;
+        font-size: 12px;
+    }
+
+    /****************** Tanks and maps page *********************/
+
+    #addNewBtn {
+        font-size: 12px;
+    }
+
+    .filter {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .filter select {
+        font-size: 12px;
+        margin-right: 15;
+        padding: 2px;
+    }
+
+    table {
+        font-size: 12px;
+        width: 80%;
+    }
+
+    tr td {
+        padding: 2px;
+    }
+
+
+    #name {
+        font-size: 16px;
+    }
+
+    #noItems {
+        font-size: 10px;
+    }
+    
+    .item img {
+        width: 40%;
+    }
+    
+    .spec {
+        font-size: 14px;
+    }
+    
+    /***************** Specific tank or map *************/
+    
+    #itemName {
+        font-size: 24px;
+    }
+
+    .itemPanel span {
+        font-size: 12px;
+    }
+
+    #ratingLbl {
+        font-size: 12px;
+    }
+
+    #rateBtn {
+        font-size: 10px;
+    }
+    
+    #prispevekLbl {
+        font-size: 12px;
+    }
+
+    #addBtn {
+        font-size: 11px;
+    }
+    
+    .novyPrispevek {
+        font-size: 11px;
+        width: 95%;
+        height: 70;
+    }
+
+    .report {
+        font-size: 10px;
+        width: 95%;
+        margin: 5px auto;    
+    }
+
+    #author {
+        padding: 11px;
+    }
+
+    #date {
+        padding: 11px;
+    }
+
+    #describe {
+        font-size: 10px;
+        padding: 0 3;
+    }
+    
+    /******************* New tank or map page *********************/
+
+    #title2 {
+        font-size: 18px;
+        padding-bottom: 5px;
+    }
+
+    .specifies {
+        padding: 14px;
+    }
+
+    .specifies table tr td {
+        font-size: 14px;
+    }
+    
+    /***************** Tips and tricks page *************/
+    
+    .tipBox {
+        font-size: 12px;
+    }
+
+    .tipBox button {
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+}

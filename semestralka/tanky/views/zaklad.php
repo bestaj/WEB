@@ -24,9 +24,7 @@ class Zaklad {
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-            <link rel="stylesheet" href="views/css/CSS_default.css">
-            <link rel="stylesheet" href="views/css/CSS_newItem.css">
-            
+            <link rel="stylesheet" href="views/css/CSS_zaklad.css">
 
         </head>
         <body>
@@ -34,8 +32,9 @@ class Zaklad {
                 <div class="loginPanel">Oficiální stránky World of Tanks: <a href="https://worldoftanks.eu/">worldoftanks.eu</a>
                 <?php $this->getLoginBox()?>
                 </div>
-                <p class="title">Buď lepší<br><span>ve</span><br>World of Tanks</p>                
+                <p id="title">Buď lepší<br><span>ve</span><br>World of Tanks</p>                
             <div class="myNav">
+                <!--
                 <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
@@ -43,7 +42,8 @@ class Zaklad {
                     <span class="icon-bar"></span>                        
                 </button>
                 </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
+                -->
+                <div id="myNavbar">
                     <ul>
                         <li><a href="index.php?page=domu">Domů</a></li>
                         <li><a href="index.php?page=tanky">Tanky</a></li> 

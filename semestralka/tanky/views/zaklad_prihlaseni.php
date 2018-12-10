@@ -11,7 +11,7 @@ class ZakladPrihlaseni {
      *  @param string $title Nazev stranky.
      */
     public function getHeader($title) {
-    ?>
+?>
 
     <!doctype>
     <html lang="cs">
@@ -23,8 +23,10 @@ class ZakladPrihlaseni {
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="views/css/CSS_zaklad_prihlaseni.css">
             
             <script>
+                // Testovani shodnosti hesel pri zmene hesla uzivatele
                 function testPassword() {
                     if (document.getElementById('pass1').value == document.getElementById('pass2').value) {
                         document.getElementById('submitBtn').disabled=false;
@@ -36,8 +38,6 @@ class ZakladPrihlaseni {
                     }
                 }  
             </script>
-            <link rel="stylesheet" href="views/css/CSS_default2.css">
-
         </head>
         <body>
             <header>
@@ -57,7 +57,7 @@ class ZakladPrihlaseni {
         </body>
     </html>
 
-    <?php
+<?php
     }
 }
 ?>

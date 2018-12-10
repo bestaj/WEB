@@ -39,7 +39,7 @@ class PrihlaseniController {
         $tplData['prihlaseniOK'] = true;
         // prihlaseni uzivatele
         if(isset($_POST["login"])){
-            $res = $this->db->userLogin($_POST["log-in"],$_POST["pass"]); 
+            $res = $this->db->userLogin(htmlspecialchars($_POST["log-in"]),htmlspecialchars($_POST["pass"])); 
             // nepovedlo se prihlasit
             if(!$res){
                 $tplData['prihlaseniOK'] = false;

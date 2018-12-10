@@ -45,11 +45,7 @@ class RegistraceController {
                 if($this->db->allUserInfo($_POST["log-in"])!=null){ // tento uzivatel uz existuje
                     $tplData['loginAlreadyExist'] = true;
                 } else {
-                    if (!isset($_POST["nick"])) {
-                         $this->db->addNewUserWithNick($_POST["log-in"], $_POST["pass1"], $_POST["email"], $_POST["nick"]);         
-                    }else {
-                        $this->db->addNewUser($_POST["log-in"], $_POST["pass1"], $_POST["email"]);
-                    }
+                    $this->db->addNewUser(htmlspecialchars($_POST["log-in"]), htmlspecialchars($_POST["pass1"]), htmlspecialchars($_POST["email"]), htmlspecialchars($_POST["nick"]));         
                    
                     $this->db->userLogin($_POST["log-in"],$_POST["pass1"]);
                     ?>

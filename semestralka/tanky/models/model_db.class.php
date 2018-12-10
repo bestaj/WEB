@@ -17,15 +17,19 @@ class Databaze {
     }
     
     /**
-     *  Vytvori v databazi noveho uzivatele vcetne s atributem "jmenoVeHre".
+     *  Vytvori v databazi noveho uzivatele.
      *
      *  @return boolean Podarilo se uzivatele vytvorit
      */
-    public function addNewUserWithNick($login, $heslo, $email, $jmenoVeHre){
+    public function addNewUser($login, $heslo, $email, $jmenoVeHre){
         // Kazdy novy uzivatel ma defaultne nastaveno pravo "Recenzent"
         $idpravo = 3;
         
-        $sql = "INSERT INTO uzivatel VALUES (:login,:heslo,:email,:jmenoVeHre,:idpravo)";
+        if ($jmenoVeHre == "") {
+            $jmenoVeHre = null;
+        }
+        
+        $sql = "INSERT INTO uzivatel(login,heslo,email,jmeno_ve_hre,idpravo) VALUES (:login,:heslo,:email,:jmenoVeHre,:idpravo)";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
@@ -35,33 +39,6 @@ class Databaze {
         $query->bindParam(':idpravo', $idpravo);
         
         $res = $this->executeQuery($query);
-        if($res == null){
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    /**
-     *  Vytvori v databazi noveho uzivatele.
-     *
-     *  @return boolean Podarilo se uzivatele vytvorit
-     */
-    public function addNewUser($login, $heslo, $email){
-        // Kazdy novy uzivatel ma defaultne nastaveno pravo "Recenzent"
-        $idpravo = 3;
-        
-        $sql = "INSERT INTO uzivatel(login,heslo,email,idpravo)
-                VALUES (:login,:heslo,:email,:idpravo)";
-        
-        $query = $this->db->prepare($sql);
-        $query->bindParam(':login', $login);
-        $query->bindParam(':heslo', $heslo);
-        $query->bindParam(':email', $email);
-        $query->bindParam(':idpravo', $idpravo);
-        
-        $res = $this->executeQuery($query);
-    
         if($res == null){
             return false;
         } else {
@@ -141,6 +118,22 @@ class Databaze {
         } else {
             return true;
         }
+    }
+    
+    /* Vrati pocet tanku v databazi */
+    public function getCountOfTanks() {
+        $sql = "SELECT COUNT(*) FROM tank";
+        $query = $this->db->prepare($sql);
+        $res = $this->executeQuery($query);
+        return $res;
+    }
+    
+    /** Vrati pocet map v databazi */
+    public function getCountOfMaps() {
+        $sql = "SELECT COUNT(*) FROM mapa";
+        $query = $this->db->prepare($sql);
+        $res = $this->executeQuery($query);
+        return $res;
     }
     
     /**
@@ -728,11 +721,8 @@ class Databaze {
      *  @return object          Vysledek dotazu.
      */
     private function executeQuery($query){
-
         $res = $query->execute();
         if (!$res) {
-            $error = $this->db->errorInfo();
-            echo $error[2];
             return null;
         } else {
             return $res;            

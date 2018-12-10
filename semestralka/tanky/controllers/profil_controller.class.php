@@ -25,7 +25,7 @@ class ProfilController {
         }
      
         // Nastaveni nazvu stranky
-        $tplData["title"] = "Profil uživatele ".$_SESSION['user']['login'];
+        $tplData["title"] = "Profil - ".$_SESSION['user']['login'];
         
         /* Ulozime si hodnotu, ktera nam rika, jaky obsah profilu se ma zobrazit v sablone
                 i) profil bez moznosti zmeny udaju
@@ -57,11 +57,11 @@ class ProfilController {
     /* Testuje zda si uzivatel nezmenil heslo nebo jmeno ve hre */
     public function confirmUserChanges() {
         if (isset($_POST["changePassword"])) {
-            $this->db->changePassword($_POST["newPass"]);
+            $this->db->changePassword(htmlspecialchars($_POST["newPass"]));
         }
         
         if (isset($_POST["changeNick"])) {
-            $this->db->changeGameNick($_POST["gameNick"]);
+            $this->db->changeGameNick(htmlspecialchars($_POST["gameNick"]));
         }
     }
 }

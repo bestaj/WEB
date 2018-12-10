@@ -8,9 +8,9 @@ $hlavicky = new Zaklad();
 global $tplData;
 
 $hlavicky->getHeader($tplData["title"]); ?>
-    <div class="content2">
+    <div class="background2">
         <div class="myContainer">
-            <h2 id="title">Nová mapa</h2>
+            <h2 id="title2">Nová mapa</h2>
             <div class="specifies">
                 <form action="index.php?page=novaMapa" method="post" enctype="multipart/form-data">
                     <table>

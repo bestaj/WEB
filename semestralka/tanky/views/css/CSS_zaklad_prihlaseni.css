@@ -1,0 +1,455 @@
+/***************************************** Universal **************************************/
+/******************************************************************************************/
+
+/***************** Generally **********************/
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/logo.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+}
+
+
+button {
+    font-size: 1.2vw;
+}
+
+td {
+    color: #bfbfbf;
+}
+
+#title {
+    color: rgb(255,150,0);
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    padding: 20;
+    cursor: default;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+/***************** Login page **********************/
+
+.loginBox {
+    background-color: rgba(0,0,0,0.8);
+    border: 5px solid white;
+    border-radius: 5px;
+    margin: auto;
+    padding: 1% 0 0;
+    width: 50%;
+}
+
+.form {
+    position: relative;
+    margin: 0 auto auto;
+    padding: 10px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+}
+
+.form label {
+    color: white;
+    cursor: default;
+}
+
+.form span {
+    cursor: default;
+    color: red;
+}
+
+.form input {
+    background-color: rgba(0,0,0,0.2);
+    margin: 0 0 15px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+}
+
+.form p {
+    color: white;
+    cursor: default;
+}
+
+.form a {
+    text-decoration: none;
+}
+
+.form a:hover {
+    color: yellow;
+}
+
+#submitBtn {
+    border: 0;
+    margin-top: 10px;
+    background-color: rgba(255,150,0,0.8);
+    float: left;
+}
+
+#submitBtn:hover {
+    background-color: rgba(255,220,0, 0.8);
+}
+    
+/***************** Register page *******************/
+    
+    
+/***************** User profile page ***************/
+
+.profilBox {
+    background-color: rgba(0,0,0,0.9);
+    margin: auto;
+    padding: 1% 0 0;
+    width: 60%;
+    max-width: 800px;
+    border:5px groove orange;
+    text-align: center;
+}
+
+
+#homeLink {
+    margin: 0 0 2%;
+    text-decoration: none;
+    padding: 2%;
+    position: absolute;
+    top: 10;
+    right: 10;
+}
+
+#homeLink:hover {
+    color: #cc7a00;
+}
+
+#changeBtn {
+    color: #cc7a00;
+    background-color: #404040;
+    border: none;
+    text-decoration: none;
+    float: right;
+    margin: 0 3% 3%;
+}
+
+#changeBtn:hover {
+    color: #ff9900;
+}
+
+.userInfo {
+    padding: 3%;
+    margin: 0 auto;   
+    overflow: auto;
+}
+
+.value {
+    color: white;
+}
+
+#reportsBtn {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
+
+#userReports {
+    color: white;
+}
+
+.report {
+    background-color: rgba(255, 150, 0, 0.2);
+    border: 1px solid red;
+    margin: 3%;
+    padding: 3%;
+}
+
+#date {
+    float: right;
+    color: red;
+}
+
+#name {
+    float: left;
+    color: yellow;
+}
+
+#noReports {
+    padding-bottom: 10px;
+    color: red;
+}
+
+/* adminova sprava uzivatelu */
+#spravaUzivatelu {
+    color: white;
+    margin: 5px 0;
+    padding: 3px;;
+    border: 2px dashed yellow;
+    text-align: center;
+}
+
+#spravaUzivatelu span {
+    padding-right: 2px;
+}
+
+#spravaUzivatelu select {
+    color: black;
+}
+
+#changeRightBtn {
+    color: orange;
+    background-color: grey;
+}
+
+/************* Change user profile page *************/
+
+.items output {
+    color: red;
+}
+
+.items fieldset {
+    font-weight: bold;
+}
+
+.items legend {
+    color: yellow;
+}
+
+.value2 {
+    color: black;
+}
+
+/*************************************** Tablet and PC ***********************************/
+/*****************************************************************************************/
+
+@media only screen and (min-width: 767px) {
+    
+    /***************** Generally ***********************/
+
+    tr {
+        font-size: 20px;
+        margin: 20;
+    }
+    
+    #title {
+        font-size: 26px;
+    }
+
+    /***************** Login page **********************/
+
+    .loginBox {
+        width: 50%;
+    }
+
+    .form a {
+        font-size: 16px;
+    }    
+
+    .form label {
+        font-size: 18px;
+    }
+
+    .form p {
+        font-size: 13px;
+    }
+
+    #submitBtn {
+        font-size: 18px;
+    }
+
+
+    /***************** Register page *******************/
+
+
+    /***************** User profile page ***************/
+    
+    .profilBox {
+        width: 60%;
+    }
+
+
+    #homeLink {
+        font-size: 24px;
+    }
+
+    #changeBtn {
+        font-size: 18px;
+        padding: 5px;
+    }
+    
+    .value {
+        padding-left: 40;
+    }
+
+    #reportsBtn {
+        font-size: 20px;
+        margin: 20;
+    }
+
+    #userReports {
+        font-size: 20px;
+    }
+
+    .line {
+        padding-bottom: 20px;
+    }
+
+    #date {
+        font-size: 15px;
+    }
+    
+    #name {
+        font-size: 24px;
+    }
+
+    #noReports {
+        font-size: 18px;
+    }
+    
+    #spravaUzivatelu {
+        font-size: 16px;
+    }
+
+    /************* Change user profile page *************/
+
+    .items {
+        font-size: 10px;
+        padding: 30px;
+    }
+
+    .items output {
+        font-size: 12px;
+    }
+
+    .items legend {
+        font-size: 20px;
+    }
+
+    .value2 {
+        padding-left: 50px;
+    }
+}
+
+/*************************************** Mobile ******************************************/
+/*****************************************************************************************/
+
+@media only screen and (max-width: 766px) {
+ 
+    /***************** Generally ***********************/
+
+    tr {
+        font-size: 12px;
+        margin: 10;
+    }
+    
+    #title {
+        font-size: 20px;
+    }
+
+    /***************** Login page **********************/
+
+    .loginBox {
+        width: 80%;
+    }
+
+    .form a {
+        font-size: 12px;
+    }    
+
+    .form label {
+        font-size: 14px;
+    }
+
+    .form p {
+        font-size: 11px;
+    }
+
+    #submitBtn {
+        font-size: 14px;
+    }
+    
+    /***************** User profile page ***************/
+    
+    .profilBox {
+        width: 90%;
+    }
+
+    #homeLink {
+        font-size: 18px;
+    }
+
+    #changeBtn {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .value {
+        padding-left: 25;
+    }
+
+    #reportsBtn {
+        font-size: 12px;
+        margin: 15;
+    }
+
+    #userReports {
+        font-size: 16px;
+    }
+
+    .line {
+        padding-bottom: 5px;
+    }
+
+    #date {
+        font-size: 12px;
+    }
+    
+    #name {
+        font-size: 18px;
+    }
+    
+    #noReports {
+        font-size: 12px;
+    }
+
+    #spravaUzivatelu {
+        font-size: 12px;
+    }
+
+    /************* Change user profile page *************/
+
+    .items {
+        padding: 15px;
+    }
+
+    .items output {
+        font-size: 12px;
+    }
+
+    .items legend {
+        font-size: 16px;
+    }
+
+    .value2 {
+        padding-left: 12px;
+    }
+}
+
+.zprava {
+    font-size: 13px;
+    color: white;
+}
+
+.zprava a {
+    font-size: 15px;
+    color: deepskyblue;
+}
+*/

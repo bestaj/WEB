@@ -27,7 +27,15 @@ class TankController {
         
         // Ulozime si ID tanku, ktery se ma zobrazit
         if (isset($_GET["tank"])) {
-            $_SESSION["itemId"] = $_GET["tank"];    
+            /*
+            $pom = $this->db->getCountOfTanks();
+            $id = $_GET["tank"] + 0;
+            if ($pom >= $id)
+                $_SESSION["itemId"] = $id;
+            else 
+                $_SESSION["itemId"] = $pom;
+                */
+            $_SESSION["itemId"] = $_GET["tank"] + 0;
         }
         
         
@@ -42,7 +50,8 @@ class TankController {
         
         // Testujeme zadost pro novy prispevek
         if (isset($_POST["addReport"])) {
-            $this->db->saveTankReport($_SESSION["user"]["iduzivatel"], $tplData["tank"]["idtank"], $_POST["popis"], date("Y-m-d"));
+            $this->db->saveTankReport($_SESSION["user"]["iduzivatel"], $tplData["tank"]["idtank"], 
+                                      htmlspecialchars($_POST["popis"]), date("Y-m-d"));
         }
         
         $tplData["title"] = "Tank ".$tplData["tank"]["nazev_tanku"];

@@ -9,12 +9,16 @@ global $tplData;
 
 $hlavicky->getHeader($tplData['title']);
 ?>
-    <div class="contentBox">
+    <div class="loginBox">
         <div class="form">
-            <?php if (!$tplData['prihlaseniOK']) { ?>
+            <?php 
+                if (!$tplData['prihlaseniOK']) { 
+            ?>
                     <span>Nesprávné jméno nebo heslo!</span>
-                <?php }?>
-            <form class="log-form" action="index.php?page=prihlaseni" method="post">
+                <?php 
+                    }
+                ?>
+            <form action="index.php?page=prihlaseni" method="post">
                 <label for="log-in">Uživatelské jméno</label>
                 <input type="text" name="log-in" required>
                 <label for="pass">Heslo</label>

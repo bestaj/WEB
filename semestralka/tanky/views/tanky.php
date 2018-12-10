@@ -8,7 +8,8 @@ $hlavicky = new Zaklad();
 global $tplData;
 
 $hlavicky->getHeader($tplData['title']); ?>
-    <div class="content2">
+    
+    <div class="background2">
         <div class="myContainer">
             <?php 
                 // Administrator a autor muze pridat novy tank 
@@ -62,6 +63,7 @@ $hlavicky->getHeader($tplData['title']); ?>
 
                     </form>
                 </div>
+                <!-- Vypis vsech vybranych polozek, podle filtru -->
                 <div class="list">
                     <?php if ($tplData["tanks"] != null)
                             foreach($tplData["tanks"] as $tank) { 
@@ -69,16 +71,18 @@ $hlavicky->getHeader($tplData['title']); ?>
                     <a href="index.php?page=tank&tank=<?php echo $tank["idtank"] ?>">
 
                         <div class="item">
-                            <span id="name"><?php echo $tank["nazev_tanku"]?></span><br>
+                            <span id="name" class="row"><?php echo $tank["nazev_tanku"]?></span><br>
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 spec">
+                                <span>Národ:</span><br>
+                                <span>Úroveň:</span><br>
+                                <span>Typ:</span><br>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 spec">
+                                <span class="value"><?php echo $tank["narod"]?></span><br>
+                                <span class="value"><?php echo $tank["uroven"]?></span><br>
+                                <span class="value"><?php echo $tank["typ"]?></span><br>
+                            </div>
                             <img src="views/images/tanks/<?php echo $tank['img']?>">
-                            <table>
-                                <tr><td><span>Národ:</span></td><td><span class="value"><?php echo $tank["narod"]?></span></td></tr>
-                                <tr><td> <span>Úroveň:</span></td><td><span class="value"><?php echo $tank["uroven"]?></span></td></tr>
-                                <tr><td><span>Typ:</span></td><td><span class="value"><?php echo $tank["typ"]?></span></td></tr>
-                            </table>
-
-
-
                         </div>
                     </a>
                     <?php } else {  ?>
