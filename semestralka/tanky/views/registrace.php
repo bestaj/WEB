@@ -1,4 +1,5 @@
 <?php
+// Sablona pro registraci
 
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad_prihlaseni.php");

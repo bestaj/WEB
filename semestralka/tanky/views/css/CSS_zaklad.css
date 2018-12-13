@@ -46,6 +46,14 @@ h2 {
     text-align: center;
 }
 
+table {
+    margin: 5 auto;
+}
+
+tr td {
+    padding: 4px;
+}
+
 /********************** Header *********************/
 
 .loginPanel {
@@ -166,6 +174,7 @@ h2 {
 
 .article {
     color: white;
+    cursor: default;
 }
 
 /****************** Tanks and maps page *********************/
@@ -188,6 +197,10 @@ h2 {
     color: white;
     text-align: center;
     word-spacing: 5;
+}
+
+.filter ul {
+    list-style: none;
 }
 
 .filter select {
@@ -223,22 +236,12 @@ h2 {
 
 .item:hover {
     background-image: radial-gradient(rgba(255, 200, 0, 0.5), rgba(0, 0, 0, 0.8));
-    border: 1px dotted yellow;
+    border: 1px dotted orange;
 }
 
 .item img {
     float: right;
 }
-
-table {
-    color: white;
-    margin: 10 auto;
-}
-
-tr td {
-    padding: 4px;
-}
-
 
 #name {
     color: red;
@@ -268,7 +271,8 @@ tr td {
     background-image: linear-gradient(rgba(100, 100, 100, 0.1), rgba(100, 100, 100, 0.9));
     color: white;
     text-align: center;
-    padding: 3%;
+    padding: 2%;
+    cursor: default;
 }
 
 .itemPanel span {
@@ -280,7 +284,6 @@ tr td {
 }
 
 .itemPanel table {
-    margin: 5% auto;
     color: white;
 }
 
@@ -290,7 +293,8 @@ tr td {
 }
 
 #ratePanel input {
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 #infoNoReports {
@@ -299,16 +303,10 @@ tr td {
 }
 
 #rateBtn {
-    color: white;
     background-image: linear-gradient(rgba(255, 150, 0, 0.8), rgba(0, 0, 0, 0.8));
 }
 
-#ratePanel rateBtn {
-    color: white;
-}
-
 #noTableRow {
-    color: white;
     border: none;
     background-color: inherit;
 }
@@ -319,7 +317,7 @@ tr td {
 }
 
 #maxValue {
-    color: red;
+    color: orange;
 }
 
 #avgValue {
@@ -393,8 +391,13 @@ tr td {
 }
 
 .specifies table {
+    width: 60%;
     color: white;
     margin: auto;
+}
+
+#spec {
+    text-align: left;
 }
 
 .value2 {
@@ -407,6 +410,7 @@ tr td {
     margin: 10px;
     color: white;
     text-align: center;
+    cursor: default;
 }
 
 .tipBox button {
@@ -497,8 +501,12 @@ tr td {
     }
 
     .filter {
-        font-size: 18px;
+        font-size: 16px;
         padding: 10px;
+    }
+    
+    .filter li {
+        display: inline-block;
     }
 
     .filter select {
@@ -549,6 +557,10 @@ tr td {
     #rateBtn {
         font-size: 16px;
     }
+    
+    #rateInfo {
+        font-size: 14px;
+    }
 
     #prispevekLbl {
         font-size: 20px;
@@ -594,6 +606,10 @@ tr td {
         padding: 20px;
     }
 
+    .specifies table {
+        text-align: center;
+    }
+    
     .specifies table tr td {
         font-size: 18px;
     }
@@ -727,7 +743,7 @@ tr td {
     }
     
     .spec {
-        font-size: 14px;
+        font-size: 12px;
     }
     
     /***************** Specific tank or map *************/
@@ -745,6 +761,10 @@ tr td {
     }
 
     #rateBtn {
+        font-size: 10px;
+    }
+    
+    #rateInfo {
         font-size: 10px;
     }
     
@@ -789,11 +809,15 @@ tr td {
     }
 
     .specifies {
-        padding: 14px;
+        padding: 12px;
     }
-
+    
+    .specifies table {
+        text-align: center;
+    }
+    
     .specifies table tr td {
-        font-size: 14px;
+        font-size: 12px;
     }
     
     /***************** Tips and tricks page *************/

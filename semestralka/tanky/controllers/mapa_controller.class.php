@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro stranku s jednou mapou
 class MapaController {
     
     private $db;
@@ -22,17 +23,14 @@ class MapaController {
             $tplData["mapa"] = $this->db->getMap($_SESSION["itemId"]);
         }
         
-        
-        
         $_SESSION["logoutPage"] = "mapa";
         if (isset($_GET["mapa"])) {
             $_SESSION["itemId"] = $_GET["mapa"] + 0;
-            
         }
-        
-        // Naplneni globalnich promennych
+     
         $tplData["mapa"] = $this->db->getMap($_SESSION["itemId"]);
         
+        // Testujeme zadost na hodnoceni mapy
         if (isset($_POST["rating"])) {
             $this->db->saveMapRating($_SESSION["user"]["iduzivatel"],$tplData["mapa"]["idmapa"],$_POST["vyvazenost"], $_POST["vegetace"], $_POST["budovy"], $_POST["spotovani"], $_POST["manevrovani"], $_POST["koridorova"], $_POST["kempeni"], date("Y-m-d"));
         }

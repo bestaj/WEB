@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro stranku prihlaseni
 class PrihlaseniController {
     
     private $db;
@@ -10,30 +11,30 @@ class PrihlaseniController {
     }
     
     /**
-     *  Vrati obsah stranky
+     *  Vrati obsah stranky.
      *  @return string Obsah stranky
      */
     public function getResult() {
         global $tplData;
         
-        // Overi prihlaseni uzivatele
+        // Overi prihlaseni uzivatele.
         $this->confirmLogin();
         
-        // Naplneni globalnich promennych
         $tplData['title'] = "Přihlášení";
         
-        // Zapneme output buffer pro odchyceni vypisu sablony
+        // Zapneme output buffer pro odchyceni vypisu sablony.
         ob_start();
         // Pripojime sablonu
         require "views/prihlaseni.php";
         
-        // Ziskame obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu.
         $obsah = ob_get_clean();
         
-        // Vratime sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty.
         return $obsah;
     }
     
+    // Overi prihlaseni uzivatele.
     public function confirmLogin() {
         global $tplData;
         $tplData['prihlaseniOK'] = true;

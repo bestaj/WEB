@@ -1,4 +1,5 @@
 <?php
+// Zakladni sablona pro stranky prihlaseni, registrace a profil
 
 /**
  * Trida vypisujici HTML hlavicky stranky pro prihlaseni a registraci uzivatele
@@ -12,7 +13,6 @@ class ZakladPrihlaseni {
      */
     public function getHeader($title) {
 ?>
-
     <!doctype>
     <html lang="cs">
         <head>

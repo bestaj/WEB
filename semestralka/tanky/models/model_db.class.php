@@ -1,5 +1,6 @@
 <?php
 include_once("settings.inc.php");
+// Trida starajici se o komunikaci s databazi
 
 class Databaze {
     
@@ -46,7 +47,7 @@ class Databaze {
         }
     }
     
-    /* Pridame novou mapu */
+    // Pridame novou mapu 
     public function addNewMap($nazev, $typ, $velikost, $mody, $popis, $img) {
         if ($popis == "") {
             $popis = null;
@@ -75,7 +76,7 @@ class Databaze {
         }
     }
     
-    /* Pridame novy tank */
+    // Pridame novy tank 
     public function addNewTank($nazev, $narod, $tier, $typ, $vydrz, $poskozeni, $prubojnost, $dpm, $pancir_veze, $pancir_korby, $rychlost_dopredu, $rychlost_dozadu, $deprese, $elevace, $dohled, $rychlost_nabijeni, $doba_nabiti_zasobniku, $rychlost_zamereni, $popis, $img) {
         if ($doba_nabiti_zasobniku == "") {
             $doba_nabiti_zasobniku = null;
@@ -120,22 +121,6 @@ class Databaze {
         }
     }
     
-    /* Vrati pocet tanku v databazi */
-    public function getCountOfTanks() {
-        $sql = "SELECT COUNT(*) FROM tank";
-        $query = $this->db->prepare($sql);
-        $res = $this->executeQuery($query);
-        return $res;
-    }
-    
-    /** Vrati pocet map v databazi */
-    public function getCountOfMaps() {
-        $sql = "SELECT COUNT(*) FROM mapa";
-        $query = $this->db->prepare($sql);
-        $res = $this->executeQuery($query);
-        return $res;
-    }
-    
     /**
      *  Overi heslo uzivatele a pokud je spravne, tak uzivatele prihlasi.
      *  @param string $login    Login uzivatele.
@@ -151,7 +136,7 @@ class Databaze {
         return true;
     }
     
-    /** Zmeni heslo uzivatele */
+    // Zmeni heslo uzivatele 
     public function changePassword($newPass) {
         $sql = "UPDATE uzivatel SET heslo = :newPass WHERE login = :login";
         
@@ -169,7 +154,7 @@ class Databaze {
         }
     }
     
-    /** Zmeni uzivateli jmeno ve hre */
+    // Zmeni uzivateli jmeno ve hre 
     public function changeGameNick($newNick) {
         $sql = "UPDATE uzivatel SET jmeno_ve_hre = :newNick WHERE login = :login";
         
@@ -187,9 +172,7 @@ class Databaze {
         }
     }
     
-    /**
-     *  Odhlasi uzivatele.
-     */
+    // Odhlasi uzivatele.
     public function userLogout(){
         // odstranim session
         unset($_SESSION["user"]);
@@ -223,7 +206,7 @@ class Databaze {
         
         $sql = "SELECT u.iduzivatel, u.login, u.heslo, u.email, u.jmeno_ve_hre, u.idpravo, p.nazev 
                 FROM uzivatel u, pravo p
-                WHERE u.login = :login AND p.idpravo = u.idpravo;";
+                WHERE u.login = :login AND p.idpravo = u.idpravo";
     
         $query = $this->db->prepare($sql);
         $query->bindParam(':login', $login);
@@ -240,7 +223,7 @@ class Databaze {
     
     /* Vrati vsechny tanky */
     public function getAllTanks() {
-        $sql = "SELECT * FROM tank ORDER BY narod, uroven, typ;";
+        $sql = "SELECT * FROM tank ORDER BY narod, uroven, typ";
         $query = $this->db->prepare($sql);
         $res = $this->executeQuery($query);
         $res = $query->fetchAll();
@@ -254,52 +237,52 @@ class Databaze {
     /* Vrati vsechny tanky podle filtru */
     public function filterTanks($narod, $typ, $uroven) {
         if ($narod == "vse" && $typ == "vse" && $uroven == "vse") {
-            $sql = "SELECT * FROM tank ORDER BY narod, uroven, typ;";
+            $sql = "SELECT * FROM tank ORDER BY narod, uroven, typ";
             $query = $this->db->prepare($sql);
         }
         else {
             // Filtrujeme podle naroda
             if ($narod != "vse" && $typ == "vse" && $uroven == "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.narod = :narod ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':narod', $narod);            
             }
             // Filtrujeme podle typu
             elseif ($narod == "vse" && $typ != "vse" && $uroven == "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.typ = :typ ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.typ = :typ ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':typ', $typ);
             }
             // Filtrujeme podle urovne
             elseif ($narod == "vse" && $typ == "vse" && $uroven != "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.uroven = :uroven ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':uroven', $uroven);
             }
             // Filtrujeme podle naroda a typu
             elseif ($narod != "vse" && $typ != "vse" && $uroven == "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':narod', $narod);
                 $query->bindParam(':typ', $typ);
             }
             // Filtrujeme podle naroda a urovne
             elseif ($narod != "vse" && $typ == "vse" && $uroven != "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.uroven = :uroven ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':narod', $narod);
                 $query->bindParam(':uroven', $uroven);
             }
             // Filtrujeme podle typu a urovne
             elseif ($narod == "vse" && $typ != "vse" && $uroven != "vse") {
-                $sql = "SELECT * FROM tank t WHERE t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':typ', $typ);
                 $query->bindParam(':uroven', $uroven);
             }
             // Filtrujeme podle vsech hodnot
             else {
-                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ;";
+                $sql = "SELECT * FROM tank t WHERE t.narod = :narod AND t.typ = :typ AND t.uroven = :uroven ORDER BY narod, uroven, typ";
                 $query = $this->db->prepare($sql);
 
                 $query->bindParam(':narod', $narod);
@@ -325,7 +308,7 @@ class Databaze {
     
     /* Vrati vsechny mapy */
     public function getAllMaps() {
-        $sql = "SELECT * FROM mapa ORDER BY typ;";
+        $sql = "SELECT * FROM mapa ORDER BY typ";
         $query = $this->db->prepare($sql);
         $res = $this->executeQuery($query);
         $res = $query->fetchAll();
@@ -339,35 +322,32 @@ class Databaze {
     /* Vrati vsechny mapy podle filtru */
     public function filterMaps($typ, $mod) {
         if ($typ == "vse" && $mod == "vse") {
-            $sql = "SELECT * FROM mapa ORDER BY typ;";
+            $sql = "SELECT * FROM mapa ORDER BY typ";
             $query = $this->db->prepare($sql);
         }
         else {
             if ($typ != "vse" && $mod == "vse") {
-                $sql = "SELECT * FROM mapa m WHERE m.typ = :typ ORDER BY typ;";
+                $sql = "SELECT * FROM mapa WHERE typ = :typ ORDER BY typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':typ', $typ); 
                 
             }
             else if ($typ == "vse" && $mod != "vse") {
-                $sql = "SELECT * FROM mapa m WHERE m.mody LIKE '%:mod%' ORDER BY typ;";
+                $sql = "SELECT * FROM mapa WHERE mody LIKE CONCAT('%' :mod '%') ORDER BY typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':mod', $mod); 
             }
             else {
-                $sql = "SELECT * FROM mapa m WHERE m.typ = :typ AND m.mody LIKE %:mod%;";
+                $sql = "SELECT * FROM mapa WHERE typ = :typ AND mody LIKE CONCAT('%' :mod '%') ORDER BY typ";
                 $query = $this->db->prepare($sql);
                 $query->bindParam(':typ', $typ); 
                 $query->bindParam(':mod', $mod); 
             }   
         }
-        
-        
-    
+
         $res = $this->executeQuery($query);
         $res = $query->fetchAll();
     
-        
         if ($res != null) {
             foreach($res as $r) {
                 $newRes[$r["nazev_mapy"]] = $r;
@@ -387,7 +367,7 @@ class Databaze {
                 UNION 
                 SELECT n.nazev_mapy AS nazev, n.popis, n.datum_prispevku FROM 
                 (SELECT m.nazev_mapy, p.popis, p.datum_prispevku, p.iduzivatel FROM mapa m INNER JOIN prispevek_k_mape p ON m.idmapa = p.idmapa) AS n
-                WHERE n.iduzivatel = (SELECT uzivatel.iduzivatel FROM uzivatel WHERE uzivatel.login = :login);";
+                WHERE n.iduzivatel = (SELECT uzivatel.iduzivatel FROM uzivatel WHERE uzivatel.login = :login)";
             
         $query = $this->db->prepare($sql);
         
@@ -401,7 +381,7 @@ class Databaze {
     
     /* Vrati vsechny prispevky k dane mape */
     public function getAllTankReports($idtank) {
-        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_tanku p WHERE p.idtank = :idtank ORDER BY datum_prispevku DESC) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel;";
+        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_tanku p WHERE p.idtank = :idtank) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel ORDER BY datum_prispevku DESC";
         
         $query = $this->db->prepare($sql);
         
@@ -416,7 +396,7 @@ class Databaze {
     
     /* Vrati vsechny prispevky k dane mape */
     public function getAllMapReports($idmapa) {
-        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_mape p WHERE p.idmapa = :idmapa ORDER BY datum_prispevku DESC) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel;";
+        $sql = "SELECT n.popis, n.datum_prispevku, u.login FROM (SELECT * FROM prispevek_k_mape p WHERE p.idmapa = :idmapa) n, uzivatel u WHERE n.iduzivatel = u.iduzivatel ORDER BY datum_prispevku DESC";
         
         $query = $this->db->prepare($sql);
         
@@ -531,7 +511,7 @@ class Databaze {
         @param $me login me sameho
     */
     public function getAllUsers($me) {
-        $sql = "SELECT n.login, p.nazev FROM (SELECT u.login, u.idpravo FROM uzivatel u WHERE u.login NOT IN (:me)) n, pravo p WHERE n.idpravo = p.idpravo;";
+        $sql = "SELECT n.login, p.nazev FROM (SELECT u.login, u.idpravo FROM uzivatel u WHERE u.login NOT IN (:me)) n, pravo p WHERE n.idpravo = p.idpravo";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':me', $me);
@@ -563,8 +543,9 @@ class Databaze {
         }
     }
     
+    // Prevede textovou reprezentaci prava na jeho ID
     public function convertRight($pravo) {
-        $sql = "SELECT idpravo FROM pravo WHERE nazev = :pravo;";
+        $sql = "SELECT idpravo FROM pravo WHERE nazev = :pravo";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':pravo', $pravo);
@@ -576,8 +557,9 @@ class Databaze {
         return $res[0]["idpravo"];
     }
     
+    // Ulozi prispevek k tanku daneho uzivatele
     public function saveTankReport($iduzivatel, $idtank, $popis, $datum) {
-        $sql = "INSERT INTO prispevek_k_tanku (iduzivatel, idtank, popis, datum_prispevku) VALUES (:iduzivatel, :idtank, :popis, :datum);";
+        $sql = "INSERT INTO prispevek_k_tanku (iduzivatel, idtank, popis, datum_prispevku) VALUES (:iduzivatel, :idtank, :popis, :datum)";
         
         $query = $this->db->prepare($sql);
         
@@ -589,8 +571,9 @@ class Databaze {
         $res = $this->executeQuery($query);
     }
     
+    // Ulozi prispevek k mape daneho uzivatele
     public function saveMapReport($iduzivatel, $idmapa, $popis, $datum) {
-        $sql = "INSERT INTO prispevek_k_mape (iduzivatel, idmapa, popis, datum_prispevku) VALUES (:iduzivatel, :idmapa, :popis, :datum);";
+        $sql = "INSERT INTO prispevek_k_mape (iduzivatel, idmapa, popis, datum_prispevku) VALUES (:iduzivatel, :idmapa, :popis, :datum)";
         
         $query = $this->db->prepare($sql);
         
@@ -602,15 +585,16 @@ class Databaze {
         $res = $this->executeQuery($query);
     }
     
+    // Ulozi hodnoceni tanku daneho uzivatele
     public function saveTankRating($iduzivatel, $idtank, $presnost, $nabijeni, $rychlost, $pohyblivost, $dohled, $pancir, $datum) {
         
         if ($this->alreadyRatedTank($iduzivatel, $idtank)) {
             $sql = "UPDATE hodnoceni_tanku h SET presnost_dela = :presnost, rychlost_nabijeni = :nabijeni, 
             maximalni_rychlost = :rychlost, pohyblivost = :pohyblivost, dohled = :dohled, pancir = :pancir, 
-            datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idtank = :idtank;";
+            datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idtank = :idtank";
         }
         else {
-            $sql = "INSERT INTO hodnoceni_tanku (iduzivatel, idtank, presnost_dela, rychlost_nabijeni, maximalni_rychlost, pohyblivost, dohled, pancir, datum_hodnoceni) VALUES (:iduzivatel, :idtank, :presnost, :nabijeni, :rychlost, :pohyblivost, :dohled, :pancir, :datum);";
+            $sql = "INSERT INTO hodnoceni_tanku (iduzivatel, idtank, presnost_dela, rychlost_nabijeni, maximalni_rychlost, pohyblivost, dohled, pancir, datum_hodnoceni) VALUES (:iduzivatel, :idtank, :presnost, :nabijeni, :rychlost, :pohyblivost, :dohled, :pancir, :datum)";
         }
         
         $query = $this->db->prepare($sql);
@@ -629,14 +613,15 @@ class Databaze {
         
     }
     
+    // Ulozi hodnoceni mapy daneho uzivatele
     public function saveMapRating($iduzivatel, $idmapa, $vyvazenost, $vegetace, $budovy, $spotovani, $manevrovani, $koridorova, $kempeni, $datum) {
         if ($this->alreadyRatedMap($iduzivatel, $idmapa)) {
             $sql = "UPDATE hodnoceni_mapy h SET vyvazena = :vyvazenost, bohatost_vegetace = :vegetace, mestska = :budovy, vhodna_ke_spotovani = :spotovani, prostor_k_objizdeni = :manevrovani, koridorova = :koridorova, 
-            kempici_pozice = :kempeni, datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idmapa = :idmapa;";
+            kempici_pozice = :kempeni, datum_hodnoceni = :datum WHERE h.iduzivatel = :iduzivatel AND h.idmapa = :idmapa";
             echo "update map";
         }
         else {
-            $sql = "INSERT INTO hodnoceni_mapy (iduzivatel, idmapa, vyvazena, bohatost_vegetace, mestska, vhodna_ke_spotovani, prostor_k_objizdeni, koridorova, kempici_pozice, datum_hodnoceni) VALUES (:iduzivatel, :idmapa, :vyvazenost, :vegetace, :budovy, :spotovani, :manevrovani, :koridorova, :kempeni, :datum);";
+            $sql = "INSERT INTO hodnoceni_mapy (iduzivatel, idmapa, vyvazena, bohatost_vegetace, mestska, vhodna_ke_spotovani, prostor_k_objizdeni, koridorova, kempici_pozice, datum_hodnoceni) VALUES (:iduzivatel, :idmapa, :vyvazenost, :vegetace, :budovy, :spotovani, :manevrovani, :koridorova, :kempeni, :datum)";
         }
             
         $query = $this->db->prepare($sql);
@@ -655,8 +640,10 @@ class Databaze {
         $res = $this->executeQuery($query);
     }
     
+    // Testuje, zda dany uzivatel jiz hodnotil danou mapu
+    // true- jiz hodnotil, false- nehodnotil
     public function alreadyRatedMap($iduzivatel, $idmapa) {
-        $sql = "SELECT * FROM hodnoceni_mapy h WHERE :idmapa = h.idmapa AND :iduzivatel = h.iduzivatel;";
+        $sql = "SELECT * FROM hodnoceni_mapy h WHERE :idmapa = h.idmapa AND :iduzivatel = h.iduzivatel";
 
         $query = $this->db->prepare($sql);
         $query->bindParam(':idmapa', $idmapa);
@@ -671,8 +658,10 @@ class Databaze {
             return true;
     }
     
+    // Testuje, zda dany uzivatel jiz hodnotil dany tank 
+    // true- jiz hodnotil, false- nehodnotil
     public function alreadyRatedTank($iduzivatel, $idtank) {
-        $sql = "SELECT * FROM hodnoceni_tanku h WHERE :idtank = h.idtank AND :iduzivatel = h.iduzivatel;";
+        $sql = "SELECT * FROM hodnoceni_tanku h WHERE :idtank = h.idtank AND :iduzivatel = h.iduzivatel";
 
         $query = $this->db->prepare($sql);
         $query->bindParam(':idtank', $idtank);
@@ -691,7 +680,7 @@ class Databaze {
     
     /* Vrati tank podle jeho id */
     public function getTank($idtank) {
-        $sql = "SELECT * FROM tank WHERE tank.idtank = :idtank;";
+        $sql = "SELECT * FROM tank WHERE tank.idtank = :idtank";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':idtank', $idtank);
@@ -704,7 +693,7 @@ class Databaze {
     
     /* Vrati mapu podle jeji id */
     public function getMap($idmapa) {
-        $sql = "SELECT * FROM mapa WHERE mapa.idmapa = :idmapa;";
+        $sql = "SELECT * FROM mapa WHERE mapa.idmapa = :idmapa";
         
         $query = $this->db->prepare($sql);
         $query->bindParam(':idmapa', $idmapa);
@@ -728,23 +717,6 @@ class Databaze {
             return $res;            
         }
     }
-    
-    /**
-     *  Prevede vysledny objekt dotazu na pole.
-     *  @param object $obj  Objekt s vysledky dotazu.
-     *  @return array       Pole s vysledky dotazu.
-     */
-    /*
-    private function resultObjectToArray($obj){
-        // získat po řádcích            
-        /*while($row = $vystup->fetch(PDO::FETCH_ASSOC)){
-            $pole[] = $row['login'].'<br>';
-        }
-        return $obj->fetchAll(); // všechny řádky do pole        
-    }
-        */
-
-    
 }
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+// Sablona pro domovskou stranku
 
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad.php");

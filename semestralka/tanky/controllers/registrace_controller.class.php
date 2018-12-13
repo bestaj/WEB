@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro registraci
 class RegistraceController {
     
     private $db;
@@ -10,26 +11,24 @@ class RegistraceController {
     }
     
     /**
-     *  Vrati obsah stranky
+     *  Vrati obsah stranky.
      *  @return string Obsah stranky
      */
     public function getResult() {
-        // Nastaveni globalnich promennych pro sablonu
         global $tplData;
-        $this->confirmRegistration();
-        // Naplneni globalnich promennych
-        $tplData['title'] = "Registrace";
-        // $tplData['data'] = $this->db->getAllIntroductions();
         
-        // vypsani prislusne sablony
-        // Zapneme output buffer pro odchyceni vypisu sablony
+        $this->confirmRegistration();
+        
+        $tplData['title'] = "Registrace";
+        
+        // Zapneme output buffer pro odchyceni vypisu sablony.
         ob_start();
         // Pripojime sablonu
         require "views/registrace.php";
-        // ziskam obsah output bufferu, tj. vypsanou sablonu
+        // Ziskame obsah output bufferu, tj. vypsanou sablonu.
         $obsah = ob_get_clean();
 
-        // vratim sablonu naplnenou daty
+        // Vratime sablonu naplnenou daty.
         return $obsah;
     }
     

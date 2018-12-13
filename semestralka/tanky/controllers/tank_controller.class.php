@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro stranku s jednim tankem
 class TankController {
     
     private $db;
@@ -38,9 +39,6 @@ class TankController {
             $_SESSION["itemId"] = $_GET["tank"] + 0;
         }
         
-        
-        
-        // Naplneni globalnich promennych
         $tplData["tank"] = $this->db->getTank($_SESSION["itemId"]);
         
         // Testujeme zadost pro nove hodnoceni

@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro stranku s radami
 class TipyController {
     
     private $db;
@@ -23,7 +24,6 @@ class TipyController {
         
         $_SESSION["logoutPage"] = "tipy"; 
         
-        // Naplneni globalnich promennych
         $tplData['title'] = "Rady a tipy";
        
         // Zapneme output buffer pro odchyceni vypisu sablony

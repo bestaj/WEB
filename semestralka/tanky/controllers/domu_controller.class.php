@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler domovske stranky
 class DomuController {
     
     private $db;
@@ -23,7 +24,6 @@ class DomuController {
     
         global $tplData;
         
-        // Naplneni globalnich promennych
         $tplData['title'] = "Domů";
         
         // Zapneme output buffer pro odchyceni vypisu sablony

@@ -1,4 +1,5 @@
 <?php
+// Sablona pro profil uzivatele
 
 // Pripojime objekt pro vypis hlavicky a paticky HTML.
 require("views/zaklad_prihlaseni.php");
@@ -141,7 +142,6 @@ $hlavicky->getHeader($tplData['title']);
             } 
         ?>    
     </div>
-    
 
 <?php 
 $hlavicky->getFooter();

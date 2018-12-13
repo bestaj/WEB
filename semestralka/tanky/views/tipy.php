@@ -1,4 +1,5 @@
 <?php
+// Sablona pro stranku s radami
 
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad.php");
@@ -9,7 +10,7 @@ global $tplData;
 
 $hlavicky->getHeader($tplData['title']);
 ?>
-<div class="background3">
+    <div class="background3">
         <div class="myContainer">
             <div class="tipBox">
                 <button id="tip" data-toggle="collapse" data-target="#tip1">1. Sleduj minimapu.</button><br>
@@ -60,7 +61,7 @@ $hlavicky->getHeader($tplData['title']);
                 </div>
             </div>
         </div>
-</div>
+    </div>
 
 <?php
 $hlavicky->getFooter();

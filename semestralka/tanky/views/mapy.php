@@ -1,4 +1,5 @@
 <?php
+// Sablona pro stranku se seznamem map
 
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad.php");
@@ -9,7 +10,6 @@ global $tplData;
 
 $hlavicky->getHeader($tplData['title']);
 ?>
-    
     <div class="background2">
         <div class="myContainer">
             <?php 
@@ -23,23 +23,32 @@ $hlavicky->getHeader($tplData['title']);
             
             <div class="filter">
                 <form action="index.php?page=mapy" method="post">
-                    <span>Typ:</span>
-                    <select name="typ">
-                        <option value="vse">Vše</option>
-                        <option value="Letní">Letní</option>
-                        <option value="Pouštní">Pouštní</option>
-                        <option value="Zimní">Zimní</option>
-                    </select>
-                    <span>Mód:</span>
-                    <select name="mod">
-                        <option value="vse">Vše</option>
-                        <option value="Standardní">Standardní bitva</option>
-                        <option value="Střetnutí">Střetnutí</option>
-                        <option value="Útok">Útok</option>
-                    </select>
-                     <input type="submit" name="filtruj" value="Filtruj">
+                    <ul>
+                        <li>
+                            <span>Typ:</span>
+                            <select name="typ">
+                                <option value="vse">Vše</option>
+                                <option value="Letní">Letní</option>
+                                <option value="Pouštní">Pouštní</option>
+                                <option value="Zimní">Zimní</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Mód:</span>
+                            <select name="mod">
+                                <option value="vse">Vše</option>
+                                <option value="Standardní">Standardní bitva</option>
+                                <option value="Střetnutí">Střetnutí</option>
+                                <option value="Útok">Útok</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="submit" name="filtruj" value="Filtruj">
+                        </li>
+                    </ul>
                 </form>  
             </div>
+            
             <!-- Vypis vsech vybranych polozek, podle filtru -->
             <div class="list">
                 <?php if ($tplData["maps"] != null)
@@ -62,11 +71,15 @@ $hlavicky->getHeader($tplData['title']);
                         <img class="col-xs-12 col-sm-4 col-md-4 col-lg-4" src="views/images/maps/<?php echo $mapa['img'] ?>">
                     </div>
                 </a>
-                <?php } else {  ?>
+                <?php 
+                    } else {  
+                ?>
                     <div id="noItems">
                         Nebyly nalezeny žádné mapy.
                     </div>
-                <?php } ?>
+                <?php 
+                    } 
+                ?>
             </div>
         </div>
     </div>

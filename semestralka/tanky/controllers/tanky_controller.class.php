@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler stranky se seznamem tanku
 class TankyController {
     
     private $db;
@@ -36,9 +37,9 @@ class TankyController {
         
         $_SESSION["logoutPage"] = "tanky";
         
-        // Naplneni globalnich promennych
         $tplData['title'] = "Tanky";
         
+        // Testujem, zda je treba provest filtraci tanku
         if (isset($_POST["filtruj"])) {
             $tplData["tanks"] = $this->db->filterTanks($_POST["narod"], $_POST["typ"], $_POST["uroven"]);
         }

@@ -101,10 +101,11 @@ td {
 
 #submitBtn:hover {
     background-color: rgba(255,220,0, 0.8);
-}
-    
-/***************** Register page *******************/
-    
+}    
+
+.zprava a {
+    color: deepskyblue;
+}   
     
 /***************** User profile page ***************/
 
@@ -149,6 +150,7 @@ td {
     padding: 3%;
     margin: 0 auto;   
     overflow: auto;
+    cursor: default;
 }
 
 .value {
@@ -264,10 +266,10 @@ td {
     #submitBtn {
         font-size: 18px;
     }
-
-
-    /***************** Register page *******************/
-
+    
+    .zprava a {
+        font-size: 16px;
+    }   
 
     /***************** User profile page ***************/
     
@@ -315,7 +317,7 @@ td {
     }
     
     #spravaUzivatelu {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     /************* Change user profile page *************/
@@ -375,7 +377,10 @@ td {
     #submitBtn {
         font-size: 14px;
     }
-    
+
+    .zprava a {
+        font-size: 12px;
+    }   
     /***************** User profile page ***************/
     
     .profilBox {
@@ -442,14 +447,3 @@ td {
         padding-left: 12px;
     }
 }
-
-.zprava {
-    font-size: 13px;
-    color: white;
-}
-
-.zprava a {
-    font-size: 15px;
-    color: deepskyblue;
-}
-*/

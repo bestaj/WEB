@@ -29,20 +29,14 @@ class Zaklad {
         </head>
         <body>
             <header>
-                <div class="loginPanel">Oficiální stránky World of Tanks: <a href="https://worldoftanks.eu/">worldoftanks.eu</a>
-                <?php $this->getLoginBox()?>
+                <div class="loginPanel">Oficiální stránky World of Tanks: 
+                <a href="https://worldoftanks.eu/">worldoftanks.eu</a>
+                <?php 
+                    $this->getLoginBox()
+                ?>
                 </div>
                 <p id="title">Buď lepší<br><span>ve</span><br>World of Tanks</p>                
             <div class="myNav">
-                <!--
-                <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-                </div>
-                -->
                 <div id="myNavbar">
                     <ul>
                         <li><a href="index.php?page=domu">Domů</a></li>

@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro profil uzivatele
 class ProfilController {
     
     private $db;
@@ -20,6 +21,7 @@ class ProfilController {
         
         $_SESSION["logoutPage"] = "domu";
         
+        // Testujeme zadost o zmenu prava
         if (isset($_POST["changeRight"])) {
             $this->db->changeRight($_POST["uzivatel"], $_POST["pravo"]);
         }
@@ -54,7 +56,7 @@ class ProfilController {
         return $obsah;
     }
     
-    /* Testuje zda si uzivatel nezmenil heslo nebo jmeno ve hre */
+    /* Testuje zadost pro zmenu hesla nebo jmena ve hre */
     public function confirmUserChanges() {
         if (isset($_POST["changePassword"])) {
             $this->db->changePassword(htmlspecialchars($_POST["newPass"]));

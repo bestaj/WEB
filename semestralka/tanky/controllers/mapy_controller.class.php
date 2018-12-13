@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro stranku se seznamem map
 class MapyController {
     
     private $db;
@@ -35,10 +36,10 @@ class MapyController {
         }
         
         $_SESSION["logoutPage"] = "mapy";
-        
-        // Naplneni globalnich promennych
+   
         $tplData['title'] = "Mapy";
         
+        // Testujem, zda je treba provest filtraci map
         if (isset($_POST["filtruj"])) {
             $tplData["maps"] = $this->db->filterMaps($_POST["typ"], $_POST["mod"]);
         }

@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro pridani nove mapy
 class PridatMapuController {
     
     private $db;
@@ -31,7 +32,6 @@ class PridatMapuController {
     
         global $tplData;
         
-        // Naplneni globalnich promennych
         $tplData["title"] = "Nová mapa";
         
         // Zapneme output buffer pro odchyceni vypisu sablony

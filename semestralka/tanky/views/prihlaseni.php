@@ -1,4 +1,5 @@
 <?php
+// Sablona pro stranku prihlaseni
 
 // pripojim objekt pro vypis hlavicky a paticky HTML
 require("views/zaklad_prihlaseni.php");
@@ -29,7 +30,6 @@ $hlavicky->getHeader($tplData['title']);
             <a href="index.php?page=domu">Zpět na domovskou stránku</a>
         </div>
     </div>
-
 <?php 
 $hlavicky->getFooter();
 ?>

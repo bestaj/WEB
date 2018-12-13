@@ -1,5 +1,6 @@
 <?php
 
+// Kontroler pro pridani noveho tanku
 class PridatTankController {
     
     private $db;
@@ -31,7 +32,6 @@ class PridatTankController {
     
         global $tplData;
         
-        // Naplneni globalnich promennych
         $tplData["title"] = "Nový tank";
         
         // Zapneme output buffer pro odchyceni vypisu sablony
